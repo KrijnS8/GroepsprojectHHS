@@ -1,4 +1,4 @@
-package nl.Mark;
+package nl.groep4b;
 
 public class Exam {
     String examTitle;
