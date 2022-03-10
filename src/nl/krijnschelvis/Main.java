@@ -19,4 +19,10 @@ class gebruiker{
     private ArrayList<String> examensGehaalt;
     private ArrayList<String> pogingen;
 
+    public gebruiker(String name, int studentenNummer, ArrayList<String> examensGehaalt, ArrayList<String> pogingen) {
+        this.name = name;
+        this.studentenNummer = studentenNummer;
+        this.examensGehaalt = examensGehaalt;
+        this.pogingen = pogingen;
+    }
 }
