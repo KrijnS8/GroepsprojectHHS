@@ -23,25 +23,22 @@ public class Main {
         }
     }
 
-    public static void printStudenten(){
-
-    }
-
     public static int mainMenu()
     {
         while (true)
         {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("1) Lijst met examens\n" +
-                    "2) Lijst met studenten\n" +
-                    "3) Nieuwe student inschrijven\n" +
-                    "4) Student verwijderen\n" +
-                    "5) Examen afnemen\n" +
-                    "6) Is student geslaagd voor test?\n" +
-                    "7) Welke examens heeft student gehaald?\n" +
-                    "8) Welke student heeft de meeste examens gehaald?\n" +
-                    "0) Exit\n" +
-                    "Voer een getal in:");
+            System.out.println("""
+                    1) Lijst met examens
+                    2) Lijst met studenten
+                    3) Nieuwe student inschrijven
+                    4) Student verwijderen
+                    5) Examen afnemen
+                    6) Is student geslaagd voor test?
+                    7) Welke examens heeft student gehaald?
+                    8) Welke student heeft de meeste examens gehaald?
+                    0) Exit
+                    Voer een getal in:""");
             try
             {
                 return Integer.parseInt(scanner.nextLine());
@@ -50,5 +47,8 @@ public class Main {
                 e.printStackTrace();
             }
         }
+    }
+    public static void printStudenten(){
+
     }
 }
