@@ -6,3 +6,7 @@ public class Main {
 	// write your code here
     }
 }
+
+class Examen{
+    private String soortExamen;
+}
