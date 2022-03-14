@@ -107,7 +107,8 @@ public class Main {
                 backToMenu();
                 break;
             case 5:
-
+                MenuBehaviour.makeExam();
+                backToMenu();
                 break;
             case 6:
                 MenuBehaviour.didStudentPass();

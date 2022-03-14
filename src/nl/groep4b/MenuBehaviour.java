@@ -25,8 +25,13 @@ public final class MenuBehaviour {
         students.add(exampleStudent3);
 
         //Initialize exams with 2 exams: English 101 en Calculus 101
-        Exam exampleEnglish1 = new Exam("English 101");
-        Exam exampleCalculus1 = new Exam("Calculus 101", 150);
+        Question ynTest = new YNQuestion("Is this test hard?", 5, false);
+        Question mcTest = new MCQuestion("Wie is onze docent", 5, new String[] {"Anniek Wieman", "Anneke Wieman"}, 2);
+        Question openTest = new OpenQuestion("Wat is de afkorting van Haagse HogeSchool", 5, "HHS");
+        Question[] testQuestions = {ynTest, mcTest, openTest};
+        Question[] emptyQuestionList = {};
+        Exam exampleEnglish1 = new Exam("English 101", testQuestions);
+        Exam exampleCalculus1 = new Exam("Calculus 101", emptyQuestionList, 150);
 
         exams.add(exampleEnglish1);
         exams.add(exampleCalculus1);
@@ -87,6 +92,13 @@ public final class MenuBehaviour {
 
         int index = scanner.nextInt();
         students.remove(index-1);
+    }
+
+    public static void makeExam(){
+        System.out.println("Welk examen wilt u maken?");
+        showExamList(LIST);
+        int examIndex = scanner.nextInt();
+        exams.get(examIndex-1).doExam();
     }
 
     //Show the list of students and
