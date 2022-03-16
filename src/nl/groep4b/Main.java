@@ -36,6 +36,8 @@ public class Main {
         //Initialize Student and Exam arrays, so they have some examples to start with
         MenuBehaviour.initializeArrays();
 
+
+
         //Initialize the Main menu with menu items
         MenuItem examList = new MenuItem(MENU_ITEM_1, OPTIONS);
         MenuItem studentList = new MenuItem(MENU_ITEM_2, OPTIONS);
@@ -48,16 +50,52 @@ public class Main {
         MenuItem exit = new MenuItem(MENU_ITEM_EXIT, EXIT);
 
 
-        mainMenuItems.add(examList);
-        mainMenuItems.add(studentList);
-        mainMenuItems.add(newStudent);
-        mainMenuItems.add(delStudent);
-        mainMenuItems.add(doExam);
-        mainMenuItems.add(studentPassedExams);
-        mainMenuItems.add(examsPassed);
-        mainMenuItems.add(mostExamsPassed);
-        mainMenuItems.add(exit);
+        System.out.println("Wat is jouw rol?\n" +
+                "1) ik ben een student\n" +
+                "2) ik ben een docent\n" +
+                "3) ik ben een beheerder");
 
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();  //Get what the User types
+        if(input > 3 || input < 1){   // if users chooses out of this scope it gives error and reinitializes the method
+            System.out.println("error: kies een nummer tussen de 1 en de 3");
+            initialize();
+        }
+        else{
+            switch(input){
+                case 1:
+                    mainMenuItems.add(examList);
+                    mainMenuItems.add(doExam);
+                    mainMenuItems.add(mostExamsPassed);         /*Error: if user selects 3 in this case it gets mainMenuItems.add(newStudent);
+                     instead of mainMenuItems.add(mostExamsPassed); because most mostExamsPassed = 7  */
+                    mainMenuItems.add(exit);
+                    break;
+                case 2:
+                    mainMenuItems.add(examList);
+                    mainMenuItems.add(studentList);
+                    mainMenuItems.add(newStudent);
+                    mainMenuItems.add(delStudent);
+                    mainMenuItems.add(studentPassedExams);
+                    mainMenuItems.add(examsPassed);
+                    mainMenuItems.add(mostExamsPassed);
+                    mainMenuItems.add(exit);
+
+                    break;
+                case 3:
+                    mainMenuItems.add(examList);
+                    mainMenuItems.add(studentList);
+                    mainMenuItems.add(newStudent);
+                    mainMenuItems.add(delStudent);
+                    mainMenuItems.add(doExam);
+                    mainMenuItems.add(studentPassedExams);
+                    mainMenuItems.add(examsPassed);
+                    mainMenuItems.add(mostExamsPassed);
+                    mainMenuItems.add(exit);
+
+                default:
+                    break;
+            }
+        }
     }
 
     //Create a new menuItem(in red) which asks if you want to go back to the main menu by typing 0 (zero)
