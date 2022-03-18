@@ -14,9 +14,11 @@ public class MenuItem {
 
     String string;
     String type;
+    int choice;
 
-    public MenuItem(String string, String type){
+    public MenuItem(String string, String type, int choice){
         this.type = type;
+        this.choice = choice;
 
         if (this.type.equals("exit") || this.type.equals("back")) {
             this.string = Wrapper.color("red", string);
@@ -33,6 +35,10 @@ public class MenuItem {
 
     public String getType() {
         return type;
+    }
+
+    public int getChoice() {
+        return choice;
     }
 
 }
