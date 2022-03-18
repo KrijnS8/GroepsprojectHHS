@@ -3,9 +3,9 @@ package nl.groep4b;
 import java.util.Scanner;
 
 abstract class Question {
-    private String text;
+    private final String text;
     public abstract boolean askQuestion();
-    private int weight;
+    private final int weight;
 
     public Question(String text, int weight) {
         this.text = text;
@@ -22,8 +22,8 @@ abstract class Question {
 }
 
 class MCQuestion extends Question {
-    private String[] options;
-    private int correctAnswer;
+    private final String[] options;
+    private final int correctAnswer;
 
     public MCQuestion(String text, int weight, String[] options, int correctAnswer) {
         super(text, weight);
@@ -39,13 +39,20 @@ class MCQuestion extends Question {
         Scanner scanner = new Scanner(System.in);
         int givenAnswer = scanner.nextInt();
         System.out.println();
-        return (correctAnswer == givenAnswer);
+        if (correctAnswer == givenAnswer) {
+            return true;
+        }
+        else {
+            System.out.println("Dat is fout, het goede antwoord is: " + correctAnswer);
+            System.out.println();
+            return false;
+        }
     }
 
 }
 
 class OpenQuestion extends Question {
-    private String correctAnswer;
+    private final String correctAnswer;
 
     public OpenQuestion(String text, int weight, String correctAnswer) {
         super(text, weight);
@@ -57,12 +64,19 @@ class OpenQuestion extends Question {
         Scanner scanner = new Scanner(System.in);
         String givenAnswer = scanner.nextLine();
         System.out.println();
-        return (correctAnswer.equals(givenAnswer));
+        if (correctAnswer.equals(givenAnswer)) {
+            return true;
+        }
+        else {
+            System.out.println("Dat is fout, het goede antwoord is: " + correctAnswer);
+            System.out.println();
+            return false;
+        }
     }
 }
 
 class YNQuestion extends Question {
-    private boolean correctAnswer;
+    private final boolean correctAnswer;
 
     public YNQuestion(String text, int weight, boolean correctAnswer) {
         super(text, weight);
@@ -75,6 +89,13 @@ class YNQuestion extends Question {
         Scanner scanner = new Scanner(System.in);
         boolean givenAnswer = scanner.nextBoolean();
         System.out.println();
-        return (givenAnswer == correctAnswer);
+        if (correctAnswer == givenAnswer) {
+            return true;
+        }
+        else {
+            System.out.println("Dat is fout, het goede antwoord is: " + correctAnswer);
+            System.out.println();
+            return false;
+        }
     }
 }

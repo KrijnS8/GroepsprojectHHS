@@ -1,4 +1,7 @@
 package nl.groep4b;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Exam {
     String examTitle;
@@ -26,6 +29,11 @@ public class Exam {
 
     public void doExam(){
         int points = 0;
+        List<Question> questionList = Arrays.asList(questions);
+
+        Collections.shuffle(questionList);
+
+        questionList.toArray(questions);
         for (Question question : questions) {
             boolean correct = question.askQuestion();
             if (correct) {
