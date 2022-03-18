@@ -75,8 +75,7 @@ public class Main {
             case 1:
                 mainMenuItems.add(examList);
                 mainMenuItems.add(doExam);
-                mainMenuItems.add(mostExamsPassed);         /*Error: if user selects 3 in this case it gets mainMenuItems.add(newStudent);
-                 instead of mainMenuItems.add(mostExamsPassed); because most mostExamsPassed = 7  */
+                mainMenuItems.add(mostExamsPassed);
                 mainMenuItems.add(exit);
                 break;
             case 2:
