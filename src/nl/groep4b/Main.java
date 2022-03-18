@@ -7,6 +7,7 @@ public class Main {
 
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<MenuItem> mainMenuItems = new ArrayList<>();
+    static ArrayList<MenuItem> roleMenuItems = new ArrayList<>();
     static int choice;
     private static int role;
 
@@ -26,23 +27,25 @@ public class Main {
     static final String MENU_ITEM_EXIT = "Exit";
     static final String MENU_ITEM_BACK = "Terug naar het hoofdmenu";
 
+    static final String ROLE_MENU_ITEM_1 = "ik ben een student";
+    static final String ROLE_MENU_ITEM_2 = "ik ben een docent";
+    static final String ROLE_MENU_ITEM_3 = "ik ben een beheerder";
+
     public static void main(String[] args) {
         initialize();
-
-        mainMenu();
     }
 
     public static void chooseRole() {
-        System.out.println("""
-                Wat is jouw rol?
-                1) ik ben een student
-                2) ik ben een docent
-                3) ik ben een beheerder""");
+        System.out.println("Wat is jouw rol?");
 
-        Scanner scanner = new Scanner(System.in);
+        for (MenuItem item : roleMenuItems) {
+            int index = roleMenuItems.indexOf(item) + 1;
+            System.out.println(Wrapper.count(index, item.getString(), OPTIONS));
+        }
+
         int input = scanner.nextInt();  //Get input from user
-        if(input > 3 || input < 1){   // if users chooses out of this scope it gives error and reinitializes the method
-            System.out.println("error: kies een nummer tussen de 1 en de 3");
+        if(input > 4 || input < 1){   // if users chooses out of this scope it gives error and reinitializes the method
+            System.out.println("error: kies een nummer tussen de 1 en de 4");
             chooseRole();
         }
         else {
@@ -51,15 +54,10 @@ public class Main {
     }
 
     public static void initialize() {
+        MenuItem student = new MenuItem(ROLE_MENU_ITEM_1, OPTIONS,1);
+        MenuItem docent = new MenuItem(ROLE_MENU_ITEM_2, OPTIONS, 2);
+        MenuItem admin = new MenuItem(ROLE_MENU_ITEM_3, OPTIONS, 3);
 
-        chooseRole();
-
-        //Initialize Student and Exam arrays, so they have some examples to start with
-        MenuBehaviour.initializeArrays();
-
-
-
-        //Initialize the Main menu with menu items
         MenuItem examList = new MenuItem(MENU_ITEM_1, OPTIONS,1);
         MenuItem studentList = new MenuItem(MENU_ITEM_2, OPTIONS, 2);
         MenuItem newStudent = new MenuItem(MENU_ITEM_3, OPTIONS, 3);
@@ -70,6 +68,16 @@ public class Main {
         MenuItem mostExamsPassed = new MenuItem(MENU_ITEM_8, OPTIONS, 8);
         MenuItem exit = new MenuItem(MENU_ITEM_EXIT, EXIT, 9);
 
+        roleMenuItems.add(student);
+        roleMenuItems.add(docent);
+        roleMenuItems.add(admin);
+        roleMenuItems.add(exit);
+
+        //Initialize Student and Exam arrays, so they have some examples to start with
+        MenuBehaviour.initializeArrays();
+
+        //Initialize the Main menu with menu items
+        chooseRole();
 
         switch(role){
             case 1:
@@ -77,6 +85,7 @@ public class Main {
                 mainMenuItems.add(doExam);
                 mainMenuItems.add(mostExamsPassed);
                 mainMenuItems.add(exit);
+                mainMenu();
                 break;
             case 2:
                 mainMenuItems.add(examList);
@@ -87,6 +96,7 @@ public class Main {
                 mainMenuItems.add(examsPassed);
                 mainMenuItems.add(mostExamsPassed);
                 mainMenuItems.add(exit);
+                mainMenu();
                 break;
             case 3:
                 mainMenuItems.add(examList);
@@ -98,6 +108,7 @@ public class Main {
                 mainMenuItems.add(examsPassed);
                 mainMenuItems.add(mostExamsPassed);
                 mainMenuItems.add(exit);
+                mainMenu();
             default:
                 break;
         }
