@@ -2,6 +2,7 @@ package nl.groep4b;
 
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public final class MenuBehaviour {
@@ -70,18 +71,24 @@ public final class MenuBehaviour {
     public static void newStudent(){
         System.out.println("Nieuwe student toevoegen\n");
 
-        System.out.print("Naam: ");
-        String name = scanner.nextLine();
 
-        System.out.print("Leeftijd: ");
-        int age = scanner.nextInt();
+        try{
+            System.out.print("Naam: ");
+            String name = scanner.nextLine();
 
-        System.out.print("Leerling nummer: ");
-        int leerlingNr = scanner.nextInt();
+            System.out.print("Leeftijd: ");
+            int age = scanner.nextInt();
 
-        students.add(new Student(name, age, leerlingNr));
+            System.out.print("Leerling nummer: ");
+            int leerlingNr = scanner.nextInt();
 
-        showStudentList(LIST);
+            students.add(new Student(name, age, leerlingNr));
+            showStudentList(LIST);
+        }
+        catch (InputMismatchException ime){
+            System.out.println("Error: Probeer het opnieuw");
+            newStudent();
+        }
     }
 
     //Show the list of students and delete the student associated with the number that is typed
