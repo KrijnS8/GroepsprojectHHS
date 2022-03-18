@@ -147,13 +147,11 @@ public final class MenuBehaviour {
                     System.out.println("Helaas, "+ students.get(studentIndex-1).getName() +
                             " heeft " + exams.get(examIndex-1).getExamTitle() + " nog niet gehaald.");
                 }
-
             }
         }
         else{
             System.out.println("Helaas, "+ students.get(studentIndex-1).getName() +
                     " heeft " + exams.get(examIndex-1).getExamTitle() + " nog niet gehaald.");
         }
-
     }
 }

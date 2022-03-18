@@ -1,7 +1,9 @@
 package nl.groep4b;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.security.MessageDigest;
 
 public class Main {
 
@@ -46,7 +48,41 @@ public class Main {
             chooseRole();
         }
         else {
+            login();
             role = input;
+        }
+    }
+
+    public static void login()
+    {
+        System.out.println("Vul uw gebruikersnaam in: ");
+        String gebruikersnaam = scanner.nextLine();
+
+        System.out.println("Vul hier uw Wachtwoord in");
+        String wachtwoord = scanner.nextLine();
+
+        String wachtwoordHased = "";
+
+        try
+        {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(wachtwoord.getBytes());
+            wachtwoordHased = new String(messageDigest.digest());
+        } catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+
+        if (!wachtwoordHased.equals("temp"))
+        {
+            //replace "temp" with get hash from Json
+            System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
+            System.out.println("Klik op enter om nog een keer te proberen");
+            System.out.println("Vul 0 in om uit het programma te gaan");
+            if (scanner.nextLine().equals(""))
+                login();
+            else
+                System.exit(0);
         }
     }
 
