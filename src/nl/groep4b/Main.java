@@ -1,6 +1,8 @@
 package nl.groep4b;
 
+import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -43,14 +45,21 @@ public class Main {
             System.out.println(Wrapper.count(index, item.getString(), OPTIONS));
         }
 
-        int input = scanner.nextInt();  //Get input from user
-        if(input > 4 || input < 1){   // if users chooses out of this scope it gives error and reinitializes the method
-            System.out.println("error: kies een nummer tussen de 1 en de 4");
+        try {
+            int input = scanner.nextInt();  //Get input from user
+            if(input > 4 || input < 1){   // if users chooses out of this scope it gives error and reinitializes the method
+                System.out.println("Error: Kies een nummer tussen de 1 en de 4");
+                chooseRole();
+            }
+            else {
+                role = input;
+            }
+        }
+        catch(InputMismatchException e){
+            System.out.println("Error: Kies een nummer tussen de 1 en de 4");
             chooseRole();
         }
-        else {
-            role = input;
-        }
+
     }
 
     public static void initialize() {
