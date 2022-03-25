@@ -18,9 +18,9 @@ public class Exam {
         pointsToPass = maxPoints / 2;
     }
 
-    public Exam(String examTitle, Question[] questions, int points){
+    public Exam(String examTitle, Question[] questions, int pointsToPass){
         this(examTitle, questions);
-        this.pointsToPass = points;
+        this.pointsToPass = pointsToPass;
     }
 
     public String getExamTitle(){

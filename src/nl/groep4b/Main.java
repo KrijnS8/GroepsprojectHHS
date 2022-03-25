@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner2 scanner = new Scanner2();
     static ArrayList<MenuItem> mainMenuItems = new ArrayList<>();
     static ArrayList<MenuItem> roleMenuItems = new ArrayList<>();
     static int choice;
@@ -24,6 +24,7 @@ public class Main {
     static final String MENU_ITEM_6 = "Is student geslaagd voor test?";
     static final String MENU_ITEM_7 = "Welke examens heeft student gehaald?";
     static final String MENU_ITEM_8 = "Welke student heeft de meeste examens gehaald";
+    static final String MENU_ITEM_9 = "Maak een nieuw examen aan";
     static final String MENU_ITEM_EXIT = "Exit";
     static final String MENU_ITEM_BACK = "Terug naar het hoofdmenu";
 
@@ -66,7 +67,8 @@ public class Main {
         MenuItem studentPassedExams = new MenuItem(MENU_ITEM_6, OPTIONS, 6);
         MenuItem examsPassed = new MenuItem(MENU_ITEM_7, OPTIONS, 7);
         MenuItem mostExamsPassed = new MenuItem(MENU_ITEM_8, OPTIONS, 8);
-        MenuItem exit = new MenuItem(MENU_ITEM_EXIT, EXIT, 9);
+        MenuItem exit = new MenuItem(MENU_ITEM_EXIT, EXIT, 10);
+        MenuItem addExam = new MenuItem(MENU_ITEM_9, OPTIONS, 9);
 
         roleMenuItems.add(student);
         roleMenuItems.add(docent);
@@ -95,6 +97,7 @@ public class Main {
                 mainMenuItems.add(studentPassedExams);
                 mainMenuItems.add(examsPassed);
                 mainMenuItems.add(mostExamsPassed);
+                mainMenuItems.add(addExam);
                 mainMenuItems.add(exit);
                 mainMenu();
                 break;
@@ -107,6 +110,7 @@ public class Main {
                 mainMenuItems.add(studentPassedExams);
                 mainMenuItems.add(examsPassed);
                 mainMenuItems.add(mostExamsPassed);
+                mainMenuItems.add(addExam);
                 mainMenuItems.add(exit);
                 mainMenu();
             default:
@@ -175,6 +179,10 @@ public class Main {
                 break;
             case 8:
                 MenuBehaviour.mostExamsPassed();
+                backToMenu();
+                break;
+            case 9:
+                MenuBehaviour.addExam();
                 backToMenu();
                 break;
         }
