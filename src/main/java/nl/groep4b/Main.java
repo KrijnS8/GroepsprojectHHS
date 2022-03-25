@@ -39,7 +39,7 @@ public class Main {
     static final String ROLE_MENU_ITEM_3 = "ik ben een beheerder";
 
     public static void main(String[] args) {
-        //initialize();
+        initialize();
         Student student = new Student("Krijn Schelvis", 18, 21092370, "tja");
         JsonConverter.objectToJson(student.getBean(), "student.json");
         StudentBean bean = JsonConverter.jsonToObject("student.json", StudentBean.class);
@@ -61,6 +61,7 @@ public class Main {
                 chooseRole();
             }
             else {
+                if(input != 4)login();
                 role = input;
             }
         }

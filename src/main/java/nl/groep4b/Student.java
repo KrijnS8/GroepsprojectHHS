@@ -19,6 +19,7 @@ public class Student {
         this.studentNr = studentNr;
         try
         {
+            //hashes password
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(password.getBytes());
             this.passwordHashed = new String(messageDigest.digest());
