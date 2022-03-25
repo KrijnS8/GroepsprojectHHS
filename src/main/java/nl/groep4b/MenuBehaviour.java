@@ -232,8 +232,18 @@ public final class MenuBehaviour {
         for (int i = 0; i < questions.size(); i++) {
             questionArray[i] = questions.get(i);
         }
-        Exam exam = new Exam(examTitle, questionArray);
-        exams.add(exam);
+
+        System.out.println("Hoeveel punten moet een student behalen om het examen te halen?");
+        System.out.println("Vul -1 in voor de standaard berekening (de helft van de punten om het examen te halen)");
+        int pointsToPass = scanner.nextInt();
+        if (pointsToPass == -1) {
+            Exam exam = new Exam(examTitle, questionArray);
+            exams.add(exam);
+        }
+        else {
+            Exam exam = new Exam(examTitle, questionArray, pointsToPass);
+            exams.add(exam);
+        }
         System.out.println("Het examen: " + examTitle + " is aangemaakt. Hij kan nu worden gemaakt");
     }
 }
