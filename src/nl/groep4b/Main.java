@@ -1,7 +1,6 @@
 package nl.groep4b;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
 
