@@ -1,5 +1,7 @@
 package nl.groep4b;
 
+import nl.groep4b.beans.StudentBean;
+
 import java.util.ArrayList;
 
 public class Student {
@@ -12,6 +14,12 @@ public class Student {
         this.name = name;
         this.age = age;
         this.studentNr = studentNr;
+    }
+
+    public Student(StudentBean bean) {
+        this.name = bean.getName();
+        this.age = bean.getAge();
+        this.studentNr = bean.getStudentNr();
     }
 
     public String getName() {
@@ -44,5 +52,14 @@ public class Student {
             System.out.println("Deze student heeft nog geen examens gehaald.");
         }
 
+    }
+
+    public StudentBean getBean() {
+        StudentBean bean = new StudentBean();
+        bean.setName(name);
+        bean.setAge(age);
+        bean.setStudentNr(studentNr);
+        bean.setExamsPassed(examsPassed);
+        return bean;
     }
 }
