@@ -1,6 +1,14 @@
 package nl.groep4b;
 
+import nl.groep4b.beans.StudentBean;
+
+import java.lang.reflect.Array;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+import java.security.MessageDigest;
 
 public class Main {
 
@@ -33,6 +41,10 @@ public class Main {
 
     public static void main(String[] args) {
         initialize();
+        Student student = new Student("Krijn Schelvis", 18, 21092370, "tja");
+        JsonConverter.objectToJson(student.getBean(), "student.json");
+        StudentBean bean = JsonConverter.jsonToObject("student.json", StudentBean.class);
+        System.out.println(bean.getAge());
     }
 
     public static void chooseRole() {
@@ -50,6 +62,39 @@ public class Main {
         }
         else {
             role = input;
+        }
+    }
+
+    public static void login()
+    {
+        System.out.println("Vul uw gebruikersnaam in: ");
+        String gebruikersnaam = scanner.nextLine();
+
+        System.out.println("Vul hier uw Wachtwoord in");
+        String wachtwoord = scanner.nextLine();
+
+        String wachtwoordHased = "";
+
+        try
+        {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(wachtwoord.getBytes());
+            wachtwoordHased = new String(messageDigest.digest());
+        } catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+
+        if (!wachtwoordHased.equals("temp"))
+        {
+            //replace "temp" with get hash from Json
+            System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
+            System.out.println("Klik op enter om nog een keer te proberen");
+            System.out.println("Vul 0 in om uit het programma te gaan");
+            if (scanner.nextLine().equals(""))
+                login();
+            else
+                System.exit(0);
         }
     }
 

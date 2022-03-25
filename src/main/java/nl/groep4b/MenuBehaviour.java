@@ -2,6 +2,7 @@ package nl.groep4b;
 
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public final class MenuBehaviour {
@@ -16,9 +17,9 @@ public final class MenuBehaviour {
     //Initialize the arrays with examples
     public static void initializeArrays() {
         //Initialize students array with 3 students: Mark, Bob en Kees
-        Student exampleStudent1 = new Student("Mark", 20, 19054033);
-        Student exampleStudent2 = new Student("Bob", 21, 21544563);
-        Student exampleStudent3 = new Student("Kees", 18, 20873675);
+        Student exampleStudent1 = new Student("Mark", 20, 19054033, "wachtwoortje");
+        Student exampleStudent2 = new Student("Bob", 21, 21544563, "inspirailoos");
+        Student exampleStudent3 = new Student("Kees", 18, 20873675, "ikweethetooknietmeer");
 
         students.add(exampleStudent1);
         students.add(exampleStudent2);
@@ -70,18 +71,27 @@ public final class MenuBehaviour {
     public static void newStudent(){
         System.out.println("Nieuwe student toevoegen\n");
 
-        System.out.print("Naam: ");
-        String name = scanner.nextLine();
 
-        System.out.print("Leeftijd: ");
-        int age = scanner.nextInt();
+        try{
+            System.out.print("Naam: ");
+            String name = scanner.nextLine();
 
-        System.out.print("Leerling nummer: ");
-        int leerlingNr = scanner.nextInt();
+            System.out.print("Leeftijd: ");
+            int age = scanner.nextInt();
 
-        students.add(new Student(name, age, leerlingNr));
+            System.out.print("Leerling nummer: ");
+            int leerlingNr = scanner.nextInt();
 
-        showStudentList(LIST);
+            System.out.print("Leerling wachtwoord");
+            String password = scanner.nextLine();
+
+            students.add(new Student(name, age, leerlingNr, password));
+            showStudentList(LIST);
+        }
+        catch (InputMismatchException ime){
+            System.out.println("Error: Probeer het opnieuw");
+            newStudent();
+        }
     }
 
     //Show the list of students and delete the student associated with the number that is typed
@@ -148,14 +158,12 @@ public final class MenuBehaviour {
                     System.out.println("Helaas, "+ students.get(studentIndex-1).getName() +
                             " heeft " + exams.get(examIndex-1).getExamTitle() + " nog niet gehaald.");
                 }
-
             }
         }
         else{
             System.out.println("Helaas, "+ students.get(studentIndex-1).getName() +
                     " heeft " + exams.get(examIndex-1).getExamTitle() + " nog niet gehaald.");
         }
-
     }
 
     public static void addExam() {

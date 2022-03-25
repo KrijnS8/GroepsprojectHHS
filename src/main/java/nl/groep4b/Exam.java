@@ -1,4 +1,6 @@
 package nl.groep4b;
+import nl.groep4b.beans.ExamBean;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,5 +48,14 @@ public class Exam {
         else {
             System.out.println("Sorry, you failed the test. You got " + points + " points but you need at least " + pointsToPass + "points.");
         }
+    }
+
+    public ExamBean toBean() {
+        ExamBean bean = new ExamBean();
+        bean.setExamTitle(examTitle);
+        bean.setPointsToPass(pointsToPass);
+        bean.setMaxPoints(maxPoints);
+        bean.setQuestions(questions);
+        return bean;
     }
 }
