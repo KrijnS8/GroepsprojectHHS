@@ -203,7 +203,7 @@ public final class MenuBehaviour {
                     questions.add(mcquestion);
                 }
                 case 2 -> {
-                    System.out.println("Is the correct answer true or false?");
+                    System.out.println("Is het goede antwoord true of false");
                     boolean correctAnswerYN = scanner.nextBoolean();
                     Question ynquestion = new YNQuestion(title, weight, correctAnswerYN);
                     questions.add(ynquestion);
