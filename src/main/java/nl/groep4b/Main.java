@@ -42,7 +42,7 @@ public class Main {
         //initialize();
         Student student = new Student("Krijn Schelvis", 18, 21092370);
         JsonConverter.objectToJson(student.getBean(), "student.json");
-        StudentBean bean = (StudentBean) JsonConverter.jsonToObject("student.json", StudentBean.class);
+        StudentBean bean = JsonConverter.jsonToObject("student.json", StudentBean.class);
         System.out.println(bean.getAge());
     }
 

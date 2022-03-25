@@ -24,7 +24,7 @@ public class JsonConverter {
         }
     }
 
-    public static <T> Object jsonToObject(String filePath, Class<T> objectType) {
+    public static <T> T jsonToObject(String filePath, Class<T> objectType) {
         // Create file at given path
         File file = new File(filePath);
         try {
@@ -32,8 +32,7 @@ public class JsonConverter {
             return MAPPER.readValue(file, objectType);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        // Return empty Object instance
-        return new Object();
     }
 }
