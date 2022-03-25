@@ -2,6 +2,8 @@ package nl.groep4b;
 
 import nl.groep4b.beans.StudentBean;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class Student {
@@ -9,17 +11,32 @@ public class Student {
     int age;
     int studentNr;
     ArrayList<Exam> examsPassed = new ArrayList<>();
+    String passwordHashed;
 
-    public Student(String name, int age, int studentNr){
+    public Student(String name, int age, int studentNr, String password){
         this.name = name;
         this.age = age;
         this.studentNr = studentNr;
+        try
+        {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(password.getBytes());
+            this.passwordHashed = new String(messageDigest.digest());
+        } catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public Student(StudentBean bean) {
         this.name = bean.getName();
         this.age = bean.getAge();
         this.studentNr = bean.getStudentNr();
+    }
+
+    public String getPasswordHashed()
+    {
+        return passwordHashed;
     }
 
     public String getName() {
