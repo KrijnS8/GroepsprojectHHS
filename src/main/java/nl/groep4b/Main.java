@@ -1,9 +1,12 @@
 package nl.groep4b;
 
+import nl.groep4b.beans.StudentBean;
+
+import java.lang.reflect.Array;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import java.security.MessageDigest;
 

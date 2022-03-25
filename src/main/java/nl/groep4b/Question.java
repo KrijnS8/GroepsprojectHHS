@@ -2,7 +2,7 @@ package nl.groep4b;
 
 import java.util.Scanner;
 
-abstract class Question {
+public abstract class Question {
     private final String text;
     public abstract boolean askQuestion();
     private final int weight;
