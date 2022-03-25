@@ -39,7 +39,11 @@ public class Main {
     static final String ROLE_MENU_ITEM_3 = "ik ben een beheerder";
 
     public static void main(String[] args) {
-        initialize();
+        //initialize();
+        Student student = new Student("Krijn Schelvis", 18, 21092370);
+        JsonConverter.objectToJson(student.getBean(), "student.json");
+        StudentBean bean = (StudentBean) JsonConverter.jsonToObject("student.json", StudentBean.class);
+        System.out.println(bean.getAge());
     }
 
     public static void chooseRole() {
