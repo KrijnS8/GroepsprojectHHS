@@ -33,6 +33,7 @@ public class Student {
         this.name = bean.getName();
         this.age = bean.getAge();
         this.studentNr = bean.getStudentNr();
+        this.passwordHashed = bean.getPasswordHashed();
     }
 
     public String getPasswordHashed()
@@ -78,6 +79,7 @@ public class Student {
         bean.setAge(age);
         bean.setStudentNr(studentNr);
         bean.setExamsPassed(examsPassed);
+        bean.setPasswordHashed(passwordHashed);
         return bean;
     }
 }

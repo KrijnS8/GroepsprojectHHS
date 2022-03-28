@@ -1,12 +1,12 @@
 package nl.groep4b;
 
+import nl.groep4b.beans.BeheerderBean;
+import nl.groep4b.beans.DocentBean;
 import nl.groep4b.beans.StudentBean;
 
-import java.lang.reflect.Array;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import java.security.MessageDigest;
 
@@ -56,12 +56,12 @@ public class Main {
 
         try {
             int input = scanner.nextInt();  //Get input from user
-            if(input > 4 || input < 1){   // if users chooses out of this scope it gives error and reinitializes the method
+            if(input > 4 || input < 1){   // if users chooses out of this scope it gives error and reinitialize the method
                 System.out.println("Error: Kies een nummer tussen de 1 en de 4");
                 chooseRole();
             }
             else {
-                if(input != 4)login();
+                if(input != 4)login(input);
                 role = input;
             }
         }
@@ -71,9 +71,10 @@ public class Main {
         }
     }
 
-    public static void login()
+    public static void login(int input)
     {
         System.out.println("Vul uw gebruikersnaam in: ");
+        scanner.nextLine();
         String gebruikersnaam = scanner.nextLine();
 
         System.out.println("Vul hier uw Wachtwoord in");
@@ -91,6 +92,14 @@ public class Main {
             e.printStackTrace();
         }
 
+        if(input == 1){
+            StudentBean student = JsonConverter.jsonToObject("student.json", StudentBean.class);
+        } else if (input == 2){
+            DocentBean docent = JsonConverter.jsonToObject("docent.json", DocentBean.class);
+        } else {
+            BeheerderBean beheerder = JsonConverter.jsonToObject("beheerder.json", BeheerderBean.class);
+        }
+
         if (!wachtwoordHased.equals("temp"))
         {
             //replace "temp" with get hash from Json
@@ -98,7 +107,7 @@ public class Main {
             System.out.println("Klik op enter om nog een keer te proberen");
             System.out.println("Vul 0 in om uit het programma te gaan");
             if (scanner.nextLine().equals(""))
-                login();
+                login(input);
             else
                 System.exit(0);
         }

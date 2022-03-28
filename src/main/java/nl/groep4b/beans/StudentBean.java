@@ -10,6 +10,7 @@ public class StudentBean {
     private int age;
     private int studentNr;
     private ArrayList<Exam> examsPassed = new ArrayList<>();
+    private String passwordHashed;
 
     public StudentBean() {
         // Empty constructor
@@ -33,6 +34,16 @@ public class StudentBean {
 
     public int getStudentNr() {
         return studentNr;
+    }
+
+    public String getPasswordHashed()
+    {
+        return passwordHashed;
+    }
+
+    public void setPasswordHashed(String passwordHashed)
+    {
+        this.passwordHashed = passwordHashed;
     }
 
     public void setStudentNr(int studentNr) {
