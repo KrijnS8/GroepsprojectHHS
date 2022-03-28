@@ -1,12 +1,8 @@
 package nl.groep4b;
 
-import nl.groep4b.beans.StudentBean;
-
-import java.lang.reflect.Array;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import java.security.MessageDigest;
 
@@ -39,11 +35,7 @@ public class Main {
     static final String ROLE_MENU_ITEM_3 = "ik ben een beheerder";
 
     public static void main(String[] args) {
-        //initialize();
-        Student student = new Student("Krijn Schelvis", 18, 21092370);
-        JsonConverter.objectToJson(student.getBean(), "student.json");
-        StudentBean bean = JsonConverter.jsonToObject("student.json", StudentBean.class);
-        System.out.println(bean.getAge());
+        initialize();
     }
 
     public static void chooseRole() {

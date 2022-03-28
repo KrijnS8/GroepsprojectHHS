@@ -1,7 +1,6 @@
 package nl.groep4b;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.groep4b.beans.StudentBean;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +29,7 @@ public class JsonConverter {
         try {
             // Try to read json file and return data in an instance of given object type
             return MAPPER.readValue(file, objectType);
+
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

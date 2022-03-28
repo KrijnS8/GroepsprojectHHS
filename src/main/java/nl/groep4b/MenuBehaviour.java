@@ -1,9 +1,6 @@
 package nl.groep4b;
 
-import java.util.ArrayList;
-import java.util.Formatter;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public final class MenuBehaviour {
 
@@ -36,6 +33,11 @@ public final class MenuBehaviour {
 
         exams.add(exampleEnglish1);
         exams.add(exampleCalculus1);
+
+        JsonConverter.objectToJson(exampleEnglish1.toBean(), "example-english-1.json");
+        ExamBean examBean = JsonConverter.jsonToObject("example-english-1.json", ExamBean.class);
+        Exam exam = new Exam(examBean);
+        System.out.println(exam);
     }
 
     //Print out "Studenten:" followed by the list of students(numbers before the students follow list convention as you

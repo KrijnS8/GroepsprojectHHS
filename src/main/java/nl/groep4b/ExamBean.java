@@ -1,13 +1,11 @@
-package nl.groep4b.beans;
-
-import nl.groep4b.Question;
+package nl.groep4b;
 
 public class ExamBean {
 
     private String examTitle;
     private int pointsToPass;
     private int maxPoints;
-    private Question[] questions;
+    private QuestionBean[] questions;
 
     public ExamBean() {
         // Empty constructor
@@ -37,11 +35,11 @@ public class ExamBean {
         this.maxPoints = maxPoints;
     }
 
-    public Question[] getQuestions() {
+    public QuestionBean[] getQuestions() {
         return questions;
     }
 
-    public void setQuestions(Question[] questions) {
+    public void setQuestions(QuestionBean[] questions) {
         this.questions = questions;
     }
 }

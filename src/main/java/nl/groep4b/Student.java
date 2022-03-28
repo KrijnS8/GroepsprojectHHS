@@ -1,7 +1,5 @@
 package nl.groep4b;
 
-import nl.groep4b.beans.StudentBean;
-
 import java.util.ArrayList;
 
 public class Student {
