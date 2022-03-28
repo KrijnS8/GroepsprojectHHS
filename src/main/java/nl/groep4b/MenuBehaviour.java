@@ -167,7 +167,7 @@ public final class MenuBehaviour {
     }
 
     public static void addExam() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner2 scanner = new Scanner2();
         System.out.println("Hoe heet het examen?");
         String examTitle = scanner.nextLine();
 
