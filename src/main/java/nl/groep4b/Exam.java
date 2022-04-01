@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Exam {
-    String examTitle;
-    int pointsToPass;
-    int maxPoints = 0;
+    private String examTitle;
+    private int pointsToPass;
+    private int maxPoints = 0;
     Question[] questions;
 
     public Exam(String examTitle, Question[] questions){
@@ -31,11 +31,11 @@ public class Exam {
 
     public void doExam(){
         int points = 0;
-        List<Question> questionList = Arrays.asList(questions);
+        /*List<Question> questionList = Arrays.asList(questions);
 
         Collections.shuffle(questionList);
 
-        questionList.toArray(questions);
+        questionList.toArray(questions);*/
         for (Question question : questions) {
             boolean correct = question.askQuestion();
             if (correct) {
@@ -48,6 +48,10 @@ public class Exam {
         else {
             System.out.println("Sorry, you failed the test. You got " + points + " points but you need at least " + pointsToPass + "points.");
         }
+    }
+
+    public int getPointsToPass() {
+        return pointsToPass;
     }
 
     public ExamBean toBean() {
