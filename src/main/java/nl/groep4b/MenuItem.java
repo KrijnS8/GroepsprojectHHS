@@ -1,6 +1,9 @@
 package nl.groep4b;
 
 public class MenuItem {
+    /**
+     * This class is for creating menu Items as options or as list
+     */
 
     //Variables:
     static final String ANSI_RESET = "\u001B[0m";

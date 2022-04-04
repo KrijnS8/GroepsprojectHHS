@@ -4,6 +4,9 @@ import java.util.*;
 import org.apache.commons.codec.binary.Base64;
 
 public final class MenuBehaviour {
+    /**
+     * This class has static methods for the behaviour of several menu options
+     */
 
     //Variables:
     static Scanner2 scanner = new Scanner2();

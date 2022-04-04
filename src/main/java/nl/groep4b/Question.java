@@ -1,7 +1,9 @@
 package nl.groep4b;
 
 public abstract class Question {
-    //General class for questions
+    /**
+     * This class is used to create general Questions
+     */
 
     //Variables:
     private final String text;
@@ -23,9 +25,10 @@ public abstract class Question {
     }
 }
 
-//Child class
 class MCQuestion extends Question {
-    //implements a multiple choice question
+    /**
+     * This child class of Question is used to implement multiple choice questions
+     */
 
     //Variables:
     private final String[] options;
@@ -77,8 +80,11 @@ class MCQuestion extends Question {
     }
 }
 
-//Child class
 class OpenQuestion extends Question {
+    /**
+     * This child class of Question is used to implement open questions
+     */
+
     //Variables
     private final String correctAnswer;
 
@@ -107,8 +113,11 @@ class OpenQuestion extends Question {
     }
 }
 
-//Child class
 class YNQuestion extends Question {
+    /**
+     * This child class of question is used to implement yes-or-no questions
+     */
+
     //Variables:
     private final boolean correctAnswer;
 

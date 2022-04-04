@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Exam {
+    /**
+     * This class is used to create and take Exams
+     */
     //Variables:
     private String examTitle;
     private int pointsToPass;

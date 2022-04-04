@@ -4,8 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Scanner2 {
-    //Implements another function for scanner using scanner to allow the program to continue running smoothly
-    // when wrong inputs are given
+    /**
+     * This class implements a replacement for the normal Scanner class with errors taken care of
+     */
 
     //Variables:
     Scanner scanner = new Scanner(System.in);

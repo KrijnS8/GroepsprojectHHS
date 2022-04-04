@@ -3,6 +3,10 @@ package nl.groep4b;
 import java.util.Formatter;
 
 public final class Wrapper {
+    /**
+     * This class is used to Wrap Strings into the right format for the application
+     */
+
     //Variables:
     static final String ANSI_RESET = "\u001B[0m";
     static final String ANSI_BLACK = "\u001B[30m";

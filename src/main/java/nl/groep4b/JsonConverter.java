@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class JsonConverter {
-    /*
-        This class is used to convert an object into json or json back into an object
+    /**
+     * This class is used to convert an object into json or json back into an object
      */
 
     //Variables:

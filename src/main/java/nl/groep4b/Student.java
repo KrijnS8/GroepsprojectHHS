@@ -8,6 +8,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class Student {
+    /**
+     * This class is for creating students objects that can hold and show data of students
+     */
+
     //Variables:
     String name;
     int age;
