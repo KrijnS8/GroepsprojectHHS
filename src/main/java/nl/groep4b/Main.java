@@ -12,7 +12,7 @@ import static nl.groep4b.MenuBehaviour.students;
 public class Main {
 
     //Variables:
-    static Scanner2 scanner = new Scanner2();
+    static ScannerV2 scanner = new ScannerV2();
     static ArrayList<MenuItem> mainMenuItems = new ArrayList<>();
     static ArrayList<MenuItem> roleMenuItems = new ArrayList<>();
     static int choice;

@@ -9,7 +9,7 @@ public final class MenuBehaviour {
      */
 
     //Variables:
-    static Scanner2 scanner = new Scanner2();
+    static ScannerV2 scanner = new ScannerV2();
     public static ArrayList<Student> students = new ArrayList<>();
     static ArrayList<Exam> exams = new ArrayList<>();
 
@@ -190,7 +190,7 @@ public final class MenuBehaviour {
     }
 
     public static void addExam() {
-        Scanner2 scanner = new Scanner2();
+        ScannerV2 scanner = new ScannerV2();
         System.out.println("Hoe heet het examen?");
         String examTitle = scanner.nextLine();
 
