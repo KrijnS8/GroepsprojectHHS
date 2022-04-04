@@ -12,27 +12,32 @@ public final class MenuBehaviour {
     static final String LIST = "list";
     static final String OPTIONS = "options";
 
-    //Initialize the arrays with examples
+    //Initialize the arrays
     public static void initializeArrays() {
-        //Initialize students array with 3 students: Mark, Bob en Kees
-        /*/
-        Student exampleStudent1 = new Student("Mark", 20, 19054033, "wachtwoortje".getBytes(), true);
-        Student exampleStudent2 = new Student("Bob", 21, 21544563, "inspirailoos".getBytes(), true);
-        Student exampleStudent3 = new Student("Kees", 18, 20873675, "ikweethetooknietmeer".getBytes(), true);
+        ArrayList<LinkedHashMap> studentMaps =
+                new ArrayList<>(JsonConverter.jsonToObject("student.json", ArrayList.class));
 
-        students.add(exampleStudent1);
-        students.add(exampleStudent2);
-        students.add(exampleStudent3);
-        /*/
-        ArrayList<LinkedHashMap> studentMaps = new ArrayList<>(JsonConverter.jsonToObject("student.json", ArrayList.class));
-        for (LinkedHashMap studentMap : studentMaps)
-        {
-            students.add(new Student((String) studentMap.get("name"), (Integer) studentMap.get("age"), (Integer) studentMap.get("studentNr"), Base64.decodeBase64((String) studentMap.get("passwordHashed")), false));
+        for (LinkedHashMap studentMap : studentMaps) {
+            students.add(new Student((String) studentMap.get("name"),
+                    (Integer) studentMap.get("age"),
+                    (Integer) studentMap.get("studentNr"),
+                    Base64.decodeBase64((String) studentMap.get("passwordHashed")),
+                    false));
         }
         //Initialize exams with 2 exams: English 101 en Calculus 101
-        Question ynTest = new YNQuestion("Is this test hard?", 5, false);
-        Question mcTest = new MCQuestion("Wie is onze docent", 5, new String[] {"Anniek Wieman", "Anneke Wieman"}, 2);
-        Question openTest = new OpenQuestion("Wat is de afkorting van Haagse HogeSchool", 5, "HHS");
+        Question ynTest = new YNQuestion("Is this test hard?",
+                5,
+                false);
+
+        Question mcTest = new MCQuestion("Wie is onze docent",
+                5,
+                new String[]{"Anniek Wieman", "Anneke Wieman"},
+                2);
+
+        Question openTest = new OpenQuestion("Wat is de afkorting van Haagse HogeSchool",
+                5,
+                "HHS");
+
         Question[] testQuestions = {ynTest, mcTest, openTest};
         Question[] emptyQuestionList = {};
         Exam exampleEnglish1 = new Exam("English 101", testQuestions);
@@ -60,7 +65,7 @@ public final class MenuBehaviour {
 
     //Print out "Examens:" followed by the list of exams(numbers before the exams follow list convention as you
     // cannot interact further with the exams that are presented)
-    public static void showExamList(String type){
+    public static void showExamList(String type) {
         System.out.println("Examens:");
 
         for (Exam exam : exams) {
@@ -72,11 +77,10 @@ public final class MenuBehaviour {
 
     // asks for a name, age and studentNr and adds this to the list of students as a new Student Object
     // then show the list of students again
-    public static void newStudent(){
+    public static void newStudent() {
         System.out.println("Nieuwe student toevoegen\n");
 
-
-        try{
+        try {
             System.out.print("Naam: ");
             String name = scanner.nextLine();
 
@@ -92,81 +96,89 @@ public final class MenuBehaviour {
             students.add(new Student(name, age, leerlingNr, password.getBytes(), true));
             showStudentList(LIST);
         }
-        catch (InputMismatchException ime){
+
+        catch (InputMismatchException ime) {
             System.out.println("Error: Probeer het opnieuw");
             newStudent();
         }
     }
 
     //Show the list of students and delete the student associated with the number that is typed
-    public static void delStudent(){
+    public static void delStudent() {
         showStudentList(OPTIONS);
-
         System.out.println("Toets het nummer van de leerling die u wilt verwijderen.");
-
         int index = scanner.nextInt();
-        students.remove(index-1);
+        students.remove(index - 1);
     }
 
-    public static void makeExam(){
+    public static void makeExam() {
         System.out.println("Welk examen wilt u maken?");
         showExamList(LIST);
         int examIndex = scanner.nextInt();
-        exams.get(examIndex-1).doExam();
+        exams.get(examIndex - 1).doExam();
     }
 
     //Show the list of students and
     //gets the number of exams passed by the student associated with the number that is typed
-    public static void examsByStudent(){
+    public static void examsByStudent() {
         showStudentList(OPTIONS);
         System.out.println("Toets het nummer van de leerling waarvan u de gehaalde examens wilt zien.");
         int index = scanner.nextInt();
-        students.get(index-1).printExamsPassed();
+        students.get(index - 1).printExamsPassed();
     }
 
     //Loops through all students and gets the number of exams passed then if the student has more exams passed than the
     //previous student in the list, change bestStudent to that student. and print out the result
-    public static void mostExamsPassed(){
+    public static void mostExamsPassed() {
         int bestStudentExams = 0;
         String bestStudent = "Nobody";
 
-        for (Student students : students){
-            if (students.getNrExamsPassed() >= bestStudentExams){
+        for (Student students : students) {
+            if (students.getNrExamsPassed() >= bestStudentExams) {
                 bestStudentExams = students.getNrExamsPassed();
                 bestStudent = students.getName();
             }
         }
+
         System.out.println("De student met de meeste examens behaald is: " + bestStudent +
                 " met " + bestStudentExams + " examens gehaald");
     }
 
     //Shows a list of all students, lets you choose one, shows a list of all exams, lets you choose one,
     //and check if the chosen student has passed the chosen exam
-    public static void didStudentPass(){
+    public static void didStudentPass() {
         showStudentList(OPTIONS);
+
         System.out.println("Toets het nummer van de leerling waarvan u het gehaalde examen wilt zien.");
-        int studentIndex = scanner.nextInt();
+        int studentIndexScanner = scanner.nextInt();
+        int studentIndex = studentIndexScanner - 1;
+
         showExamList(OPTIONS);
+
         System.out.println("Toets het nummer van het examen waarvan u wilt zien of " +
-                students.get(studentIndex-1).getName() + " het heeft gehaald.");
+                getStudentName(studentIndex) + " het heeft gehaald.");
         int examIndex = scanner.nextInt();
         scanner.nextLine();
-        if (students.get(studentIndex - 1).getExamsPassed().size() != 0){
-            for(Exam exam : students.get(studentIndex - 1).getExamsPassed()){
-                System.out.println(exams.get(examIndex-1).getExamTitle());
-                if(exam.getExamTitle().equals(exams.get(examIndex-1).getExamTitle())){
-                    System.out.println("Ja, " + students.get(studentIndex-1).getName() +
-                            " heeft " + exams.get(examIndex-1).getExamTitle() + " gehaald!");
+
+        if (getExamsPassed(studentIndex).size() != 0) {
+
+            for (Exam exam : getExamsPassed(studentIndex)) {
+                System.out.println(exams.get(examIndex).getExamTitle());
+
+                if (exam.getExamTitle().equals(exams.get(examIndex).getExamTitle())) {
+                    System.out.println("Ja, " + getStudentName(studentIndex) +
+                            " heeft " + exams.get(examIndex).getExamTitle() + " gehaald!");
                 }
-                else{
-                    System.out.println("Helaas, "+ students.get(studentIndex-1).getName() +
-                            " heeft " + exams.get(examIndex-1).getExamTitle() + " nog niet gehaald.");
+                else {
+                    System.out.println("Helaas, " + getStudentName(studentIndex) +
+                            " heeft " + exams.get(examIndex).getExamTitle() + " nog niet gehaald.");
                 }
             }
         }
-        else{
-            System.out.println("Helaas, "+ students.get(studentIndex-1).getName() +
-                    " heeft " + exams.get(examIndex-1).getExamTitle() + " nog niet gehaald.");
+
+        else {
+            System.out.println("Helaas, " + getStudentName(studentIndex) +
+                    " heeft " + exams.get(examIndex - 1).getExamTitle() + " nog niet gehaald.");
         }
     }
 
@@ -185,13 +197,16 @@ public final class MenuBehaviour {
         int choice = scanner.nextInt();
         scanner.nextLine();
         ArrayList<Question> questions = new ArrayList<>();
-        while(choice != 0) {
+
+        while (choice != 0) {
             System.out.println("Wat is de vraag?");
             String title = scanner.nextLine();
             System.out.println("Hoeveel punten is de vraag waard?");
             int weight = scanner.nextInt();
             scanner.nextLine();
+
             switch (choice) {
+
                 case 1 -> {
                     Question mcquestion = new MCQuestion(title, weight);
                     questions.add(mcquestion);
@@ -208,20 +223,24 @@ public final class MenuBehaviour {
                     Question openquestion = new OpenQuestion(title, weight, correctAnswerOpen);
                     questions.add(openquestion);
                 }
-                default -> {
+                default ->{
                 }
+
             }
+
             System.out.println("""
-                Wat voor een vraag wilt u toevoegen?
-                1) Meerkeuze vraag
-                2) Ja/Nee vraag
-                3) Open vraag
-                0) Examen is klaar
-                """);
+                    Wat voor een vraag wilt u toevoegen?
+                    1) Meerkeuze vraag
+                    2) Ja/Nee vraag
+                    3) Open vraag
+                    0) Examen is klaar
+                    """);
 
             choice = scanner.nextInt();
             scanner.nextLine();
+
         }
+
         Question[] questionArray = new Question[questions.size()];
         for (int i = 0; i < questions.size(); i++) {
             questionArray[i] = questions.get(i);
@@ -230,6 +249,7 @@ public final class MenuBehaviour {
         System.out.println("Hoeveel punten moet een student behalen om het examen te halen?");
         System.out.println("Vul -1 in voor de standaard berekening (de helft van de punten om het examen te halen)");
         int pointsToPass = scanner.nextInt();
+
         if (pointsToPass == -1) {
             Exam exam = new Exam(examTitle, questionArray);
             exams.add(exam);
@@ -238,6 +258,16 @@ public final class MenuBehaviour {
             Exam exam = new Exam(examTitle, questionArray, pointsToPass);
             exams.add(exam);
         }
+
         System.out.println("Het examen: " + examTitle + " is aangemaakt. Hij kan nu worden gemaakt");
+
+    }
+
+    public static String getStudentName(int i) {
+        return students.get(i).getName();
+    }
+
+    public static ArrayList<Exam> getExamsPassed(int i){
+        return students.get(i).getExamsPassed();
     }
 }
