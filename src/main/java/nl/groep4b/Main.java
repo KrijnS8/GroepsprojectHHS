@@ -2,13 +2,12 @@ package nl.groep4b;
 
 import nl.groep4b.beans.StudentBean;
 
-import java.lang.reflect.Array;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
 import java.security.MessageDigest;
+import java.util.Arrays;
+
+import static nl.groep4b.MenuBehaviour.students;
 
 public class Main {
 
@@ -41,10 +40,13 @@ public class Main {
 
     public static void main(String[] args) {
         initialize();
-        Student student = new Student("Krijn Schelvis", 18, 21092370, "tja");
+        /*/
+        Student student = new Student("Krijn Schelvis", 18, 21092370, "tja".getBytes(), true);
         JsonConverter.objectToJson(student.getBean(), "student.json");
         StudentBean bean = JsonConverter.jsonToObject("student.json", StudentBean.class);
         System.out.println(bean.getAge());
+        /*/
+        saveUsers();
     }
 
     public static void chooseRole() {
@@ -56,11 +58,12 @@ public class Main {
         }
 
         int input = scanner.nextInt();  //Get input from user
-        if(input > 4 || input < 1){   // if users chooses out of this scope it gives error and reinitializes the method
+        if(input > 4 || input < 1){   // if users chooses out of this scope it gives error and reinitialize the method
             System.out.println("error: kies een nummer tussen de 1 en de 4");
             chooseRole();
         }
         else {
+            if(input != 4)login();
             role = input;
         }
     }
@@ -72,30 +75,34 @@ public class Main {
 
         System.out.println("Vul hier uw Wachtwoord in");
         String wachtwoord = scanner.nextLine();
-
-        String wachtwoordHased = "";
-
+        byte[] wachtwoordHased = new byte[0];
         try
         {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(wachtwoord.getBytes());
-            wachtwoordHased = new String(messageDigest.digest());
+            wachtwoordHased = messageDigest.digest();
         } catch (NoSuchAlgorithmException e)
         {
             e.printStackTrace();
         }
-
-        if (!wachtwoordHased.equals("temp"))
-        {
-            //replace "temp" with get hash from Json
-            System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
-            System.out.println("Klik op enter om nog een keer te proberen");
-            System.out.println("Vul 0 in om uit het programma te gaan");
-            if (scanner.nextLine().equals(""))
-                login();
-            else
-                System.exit(0);
+        for(Student student: students){
+            if(gebruikersnaam.equals(student.getName()))
+            {
+                if (!Arrays.equals(wachtwoordHased, student.getPasswordHashed()))
+                {
+                    //replace "temp" with get hash from Json
+                    System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
+                    System.out.println("Klik op enter om nog een keer te proberen");
+                    System.out.println("Vul 0 in om uit het programma te gaan");
+                    if (scanner.nextLine().equals(""))
+                        login();
+                    else
+                        System.exit(0);
+                }
+                break;
+            }
         }
+
     }
 
     public static void initialize() {
@@ -160,6 +167,14 @@ public class Main {
             default:
                 break;
         }
+    }
+
+    public static void saveUsers(){
+        ArrayList<StudentBean> studentBeans = new ArrayList<>();
+        for(Student student: students){
+            studentBeans.add(student.getBean());
+        }
+        JsonConverter.objectToJson(studentBeans, "student.json");
     }
 
     //Create a new menuItem(in red) which asks if you want to go back to the main menu by typing 0 (zero)

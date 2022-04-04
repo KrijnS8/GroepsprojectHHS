@@ -1,9 +1,11 @@
 package nl.groep4b;
 
 import nl.groep4b.beans.StudentBean;
+import org.apache.commons.codec.binary.Base64;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Student {
@@ -11,21 +13,26 @@ public class Student {
     int age;
     int studentNr;
     ArrayList<Exam> examsPassed = new ArrayList<>();
-    String passwordHashed;
+    byte[] passwordHashed;
 
-    public Student(String name, int age, int studentNr, String password){
+    public Student(String name, int age, int studentNr, byte[] password, boolean needsToBeHashed){
         this.name = name;
         this.age = age;
         this.studentNr = studentNr;
-        try
+        if(needsToBeHashed)
         {
-            //hashes password
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(password.getBytes());
-            this.passwordHashed = new String(messageDigest.digest());
-        } catch (NoSuchAlgorithmException e)
-        {
-            e.printStackTrace();
+            try
+            {
+                //hashes password
+                MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+                messageDigest.update(password);
+                this.passwordHashed = messageDigest.digest();
+            } catch (NoSuchAlgorithmException e)
+            {
+                e.printStackTrace();
+            }
+        } else {
+            this.passwordHashed = password;
         }
     }
 
@@ -33,10 +40,10 @@ public class Student {
         this.name = bean.getName();
         this.age = bean.getAge();
         this.studentNr = bean.getStudentNr();
-        this.passwordHashed = bean.getPasswordHashed();
+        this.passwordHashed = Base64.decodeBase64(bean.getPasswordHashed());
     }
 
-    public String getPasswordHashed()
+    public byte[] getPasswordHashed()
     {
         return passwordHashed;
     }

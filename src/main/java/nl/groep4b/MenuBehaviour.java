@@ -1,14 +1,12 @@
 package nl.groep4b;
 
-import java.util.ArrayList;
-import java.util.Formatter;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
+import org.apache.commons.codec.binary.Base64;
 
 public final class MenuBehaviour {
 
     static Scanner2 scanner = new Scanner2();
-    static ArrayList<Student> students = new ArrayList<>();
+    public static ArrayList<Student> students = new ArrayList<>();
     static ArrayList<Exam> exams = new ArrayList<>();
 
     static final String LIST = "list";
@@ -17,14 +15,20 @@ public final class MenuBehaviour {
     //Initialize the arrays with examples
     public static void initializeArrays() {
         //Initialize students array with 3 students: Mark, Bob en Kees
-        Student exampleStudent1 = new Student("Mark", 20, 19054033, "wachtwoortje");
-        Student exampleStudent2 = new Student("Bob", 21, 21544563, "inspirailoos");
-        Student exampleStudent3 = new Student("Kees", 18, 20873675, "ikweethetooknietmeer");
+        /*/
+        Student exampleStudent1 = new Student("Mark", 20, 19054033, "wachtwoortje".getBytes(), true);
+        Student exampleStudent2 = new Student("Bob", 21, 21544563, "inspirailoos".getBytes(), true);
+        Student exampleStudent3 = new Student("Kees", 18, 20873675, "ikweethetooknietmeer".getBytes(), true);
 
         students.add(exampleStudent1);
         students.add(exampleStudent2);
         students.add(exampleStudent3);
-
+        /*/
+        ArrayList<LinkedHashMap> studentMaps = new ArrayList<>(JsonConverter.jsonToObject("student.json", ArrayList.class));
+        for (LinkedHashMap studentMap : studentMaps)
+        {
+            students.add(new Student((String) studentMap.get("name"), (Integer) studentMap.get("age"), (Integer) studentMap.get("studentNr"), Base64.decodeBase64((String) studentMap.get("passwordHashed")), false));
+        }
         //Initialize exams with 2 exams: English 101 en Calculus 101
         Question ynTest = new YNQuestion("Is this test hard?", 5, false);
         Question mcTest = new MCQuestion("Wie is onze docent", 5, new String[] {"Anniek Wieman", "Anneke Wieman"}, 2);
@@ -85,7 +89,7 @@ public final class MenuBehaviour {
             System.out.print("Leerling wachtwoord");
             String password = scanner.nextLine();
 
-            students.add(new Student(name, age, leerlingNr, password));
+            students.add(new Student(name, age, leerlingNr, password.getBytes(), true));
             showStudentList(LIST);
         }
         catch (InputMismatchException ime){

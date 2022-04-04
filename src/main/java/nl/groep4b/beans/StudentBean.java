@@ -1,6 +1,7 @@
 package nl.groep4b.beans;
 
 import nl.groep4b.Exam;
+import org.apache.commons.codec.binary.Base64;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ public class StudentBean {
     private int age;
     private int studentNr;
     private ArrayList<Exam> examsPassed = new ArrayList<>();
-    private String passwordHashed;
+    private byte[] passwordHashed;
 
     public StudentBean() {
         // Empty constructor
@@ -38,10 +39,10 @@ public class StudentBean {
 
     public String getPasswordHashed()
     {
-        return passwordHashed;
+        return Base64.encodeBase64String(passwordHashed);
     }
 
-    public void setPasswordHashed(String passwordHashed)
+    public void setPasswordHashed(byte[] passwordHashed)
     {
         this.passwordHashed = passwordHashed;
     }
