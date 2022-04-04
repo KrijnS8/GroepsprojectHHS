@@ -3,6 +3,7 @@ package nl.groep4b;
 import java.util.Scanner;
 
 public abstract class Question {
+    //General class for questions
     private final String text;
     public abstract boolean askQuestion();
     private final int weight;
@@ -22,6 +23,7 @@ public abstract class Question {
 }
 
 class MCQuestion extends Question {
+    //implements a multiple choice question
     private final String[] options;
     private final int correctAnswer;
 
@@ -32,13 +34,15 @@ class MCQuestion extends Question {
     }
 
     public boolean askQuestion() {
+        //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
         for (int i = 0; i < options.length; i++) {
             System.out.println(i+1 + ": " + options[i]);
         }
-        Scanner scanner = new Scanner(System.in);
+        Scanner2 scanner = new Scanner2();
         int givenAnswer = scanner.nextInt();
         System.out.println();
+        // Gives you the correct answer if you gave the wrong answer
         if (correctAnswer == givenAnswer) {
             return true;
         }
@@ -60,10 +64,12 @@ class OpenQuestion extends Question {
     }
 
     public boolean askQuestion() {
+        //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
-        Scanner scanner = new Scanner(System.in);
+        Scanner2 scanner = new Scanner2();
         String givenAnswer = scanner.nextLine();
         System.out.println();
+        // Gives you the correct answer if you gave the wrong answer
         if (correctAnswer.equals(givenAnswer)) {
             return true;
         }
@@ -84,11 +90,13 @@ class YNQuestion extends Question {
     }
 
     public boolean askQuestion() {
+        //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
         System.out.println("true of false");
-        Scanner scanner = new Scanner(System.in);
+        Scanner2 scanner = new Scanner2();
         boolean givenAnswer = scanner.nextBoolean();
         System.out.println();
+        // Gives you the correct answer if you gave the wrong answer
         if (correctAnswer == givenAnswer) {
             return true;
         }

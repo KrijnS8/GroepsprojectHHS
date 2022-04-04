@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public final class MenuBehaviour {
 
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner2 scanner = new Scanner2();
     static ArrayList<Student> students = new ArrayList<>();
     static ArrayList<Exam> exams = new ArrayList<>();
 
@@ -146,6 +146,7 @@ public final class MenuBehaviour {
         System.out.println("Toets het nummer van het examen waarvan u wilt zien of " +
                 students.get(studentIndex-1).getName() + " het heeft gehaald.");
         int examIndex = scanner.nextInt();
+        scanner.nextLine();
         if (students.get(studentIndex - 1).getExamsPassed().size() != 0){
             for(Exam exam : students.get(studentIndex - 1).getExamsPassed()){
                 System.out.println(exams.get(examIndex-1).getExamTitle());
@@ -163,5 +164,86 @@ public final class MenuBehaviour {
             System.out.println("Helaas, "+ students.get(studentIndex-1).getName() +
                     " heeft " + exams.get(examIndex-1).getExamTitle() + " nog niet gehaald.");
         }
+    }
+
+    public static void addExam() {
+        Scanner2 scanner = new Scanner2();
+        System.out.println("Hoe heet het examen?");
+        String examTitle = scanner.nextLine();
+
+        System.out.println("""
+                Wat voor een vraag wilt u toevoegen?
+                1) Meerkeuze vraag
+                2) Ja/Nee vraag
+                3) Open vraag
+                """);
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        ArrayList<Question> questions = new ArrayList<>();
+        while(choice != 0) {
+            System.out.println("Wat is de vraag?");
+            String title = scanner.nextLine();
+            System.out.println("Hoeveel punten is de vraag waard?");
+            int weight = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1 -> {
+                    System.out.println("Hoeveel opties heeft de vraag?");
+                    int optionsNr = scanner.nextInt();
+                    scanner.nextLine();
+                    String[] options = new String[optionsNr];
+                    for (int i = 0; i < optionsNr; i++) {
+                        System.out.println("Geef optie: " + (i + 1));
+                        options[i] = scanner.nextLine();
+                    }
+                    System.out.println("Welke optie is correct?");
+                    int correctAnswerMC = scanner.nextInt();
+                    Question mcquestion = new MCQuestion(title, weight, options, correctAnswerMC);
+                    questions.add(mcquestion);
+                }
+                case 2 -> {
+                    System.out.println("Is het goede antwoord true of false");
+                    boolean correctAnswerYN = scanner.nextBoolean();
+                    Question ynquestion = new YNQuestion(title, weight, correctAnswerYN);
+                    questions.add(ynquestion);
+                }
+                case 3 -> {
+                    System.out.println("What is the correct answer?");
+                    String correctAnswerOpen = scanner.nextLine();
+                    Question openquestion = new OpenQuestion(title, weight, correctAnswerOpen);
+                    questions.add(openquestion);
+                }
+                default -> {
+                }
+            }
+            System.out.println("""
+                Wat voor een vraag wilt u toevoegen?
+                1) Meerkeuze vraag
+                2) Ja/Nee vraag
+                3) Open vraag
+                0) Examen is klaar
+                """);
+
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
+        Question[] questionArray = new Question[questions.size()];
+        for (int i = 0; i < questions.size(); i++) {
+            questionArray[i] = questions.get(i);
+        }
+
+        System.out.println("Hoeveel punten moet een student behalen om het examen te halen?");
+        System.out.println("Vul -1 in voor de standaard berekening (de helft van de punten om het examen te halen)");
+        int pointsToPass = scanner.nextInt();
+        if (pointsToPass == -1) {
+            Exam exam = new Exam(examTitle, questionArray);
+            exams.add(exam);
+        }
+        else {
+            Exam exam = new Exam(examTitle, questionArray, pointsToPass);
+            exams.add(exam);
+        }
+        System.out.println("Het examen: " + examTitle + " is aangemaakt. Hij kan nu worden gemaakt");
     }
 }
