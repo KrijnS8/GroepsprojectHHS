@@ -6,11 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Exam {
+    //Variables:
     private String examTitle;
     private int pointsToPass;
     private int maxPoints = 0;
     Question[] questions;
 
+    //Constructors:
     public Exam(String examTitle, Question[] questions){
         this.examTitle = examTitle;
         this.questions = questions;
@@ -25,10 +27,7 @@ public class Exam {
         this.pointsToPass = pointsToPass;
     }
 
-    public String getExamTitle(){
-        return examTitle;
-    }
-
+    //Methods:
     public void doExam(){
         int points = 0;
         /*List<Question> questionList = Arrays.asList(questions);
@@ -50,10 +49,6 @@ public class Exam {
         }
     }
 
-    public int getPointsToPass() {
-        return pointsToPass;
-    }
-
     public ExamBean toBean() {
         ExamBean bean = new ExamBean();
         bean.setExamTitle(examTitle);
@@ -61,5 +56,13 @@ public class Exam {
         bean.setMaxPoints(maxPoints);
         bean.setQuestions(questions);
         return bean;
+    }
+
+    //Getters:
+    public int getPointsToPass() {
+        return pointsToPass;
+    }
+    public String getExamTitle(){
+        return examTitle;
     }
 }

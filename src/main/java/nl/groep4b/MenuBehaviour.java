@@ -5,6 +5,7 @@ import org.apache.commons.codec.binary.Base64;
 
 public final class MenuBehaviour {
 
+    //Variables:
     static Scanner2 scanner = new Scanner2();
     public static ArrayList<Student> students = new ArrayList<>();
     static ArrayList<Exam> exams = new ArrayList<>();
@@ -12,6 +13,7 @@ public final class MenuBehaviour {
     static final String LIST = "list";
     static final String OPTIONS = "options";
 
+    //Methods:
     //Initialize the arrays
     public static void initializeArrays() {
         ArrayList<LinkedHashMap> studentMaps =
@@ -263,10 +265,10 @@ public final class MenuBehaviour {
 
     }
 
+    //Getters
     public static String getStudentName(int i) {
         return students.get(i).getName();
     }
-
     public static ArrayList<Exam> getExamsPassed(int i){
         return students.get(i).getExamsPassed();
     }

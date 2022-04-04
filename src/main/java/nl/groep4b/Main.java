@@ -11,6 +11,7 @@ import static nl.groep4b.MenuBehaviour.students;
 
 public class Main {
 
+    //Variables:
     static Scanner2 scanner = new Scanner2();
     static ArrayList<MenuItem> mainMenuItems = new ArrayList<>();
     static ArrayList<MenuItem> roleMenuItems = new ArrayList<>();
@@ -38,14 +39,9 @@ public class Main {
     static final String ROLE_MENU_ITEM_2 = "ik ben een docent";
     static final String ROLE_MENU_ITEM_3 = "ik ben een beheerder";
 
+    //Methods:
     public static void main(String[] args) {
         initialize();
-        /*/
-        Student student = new Student("Krijn Schelvis", 18, 21092370, "tja".getBytes(), true);
-        JsonConverter.objectToJson(student.getBean(), "student.json");
-        StudentBean bean = JsonConverter.jsonToObject("student.json", StudentBean.class);
-        System.out.println(bean.getAge());
-        /*/
         saveUsers();
     }
 
@@ -170,10 +166,13 @@ public class Main {
 
     public static void saveUsers(){
         ArrayList<StudentBean> studentBeans = new ArrayList<>();
+
         for(Student student: students){
             studentBeans.add(student.getBean());
         }
+
         JsonConverter.objectToJson(studentBeans, "student.json");
+
     }
 
     //Create a new menuItem(in red) which asks if you want to go back to the main menu by typing 0 (zero)
@@ -204,6 +203,7 @@ public class Main {
 
         choice = scanner.nextInt();
         int correctedChoice = mainMenuItems.get(choice-1).getChoice();
+
         switch (correctedChoice){
             case 0:
                 break;

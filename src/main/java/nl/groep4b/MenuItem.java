@@ -2,6 +2,7 @@ package nl.groep4b;
 
 public class MenuItem {
 
+    //Variables:
     static final String ANSI_RESET = "\u001B[0m";
     static final String ANSI_BLACK = "\u001B[30m";
     static final String ANSI_RED = "\u001B[31m";
@@ -16,6 +17,7 @@ public class MenuItem {
     String type;
     int choice;
 
+    //Constructors:
     public MenuItem(String string, String type, int choice){
         this.type = type;
         this.choice = choice;
@@ -29,14 +31,13 @@ public class MenuItem {
 
     }
 
+    //Getters:
     public String getString() {
         return string;
     }
-
     public String getType() {
         return type;
     }
-
     public int getChoice() {
         return choice;
     }

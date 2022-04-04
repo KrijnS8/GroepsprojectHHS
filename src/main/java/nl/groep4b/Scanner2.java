@@ -6,8 +6,11 @@ import java.util.Scanner;
 public class Scanner2 {
     //Implements another function for scanner using scanner to allow the program to continue running smoothly
     // when wrong inputs are given
+
+    //Variables:
     Scanner scanner = new Scanner(System.in);
 
+    //Methods:
     public String nextLine(){
         String result;
         try {

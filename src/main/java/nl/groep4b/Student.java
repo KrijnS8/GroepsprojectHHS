@@ -9,12 +9,14 @@ import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Student {
+    //Variables:
     String name;
     int age;
     int studentNr;
     ArrayList<Exam> examsPassed = new ArrayList<>();
     byte[] passwordHashed;
 
+    //Constructors:
     public Student(String name, int age, int studentNr, byte[] password, boolean needsToBeHashed){
         this.name = name;
         this.age = age;
@@ -43,31 +45,7 @@ public class Student {
         this.passwordHashed = Base64.decodeBase64(bean.getPasswordHashed());
     }
 
-    public byte[] getPasswordHashed()
-    {
-        return passwordHashed;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge(){
-        return age;
-    }
-
-    public int getStudentNr(){
-        return studentNr;
-    }
-
-    public int getNrExamsPassed(){
-        return examsPassed.size();
-    }
-
-    public ArrayList<Exam> getExamsPassed() {
-        return examsPassed;
-    }
-
+    //Methods:
     //Print a list of passed exams by the student as a list
     public void printExamsPassed() {
         if(examsPassed.size() > 0)
@@ -88,5 +66,26 @@ public class Student {
         bean.setExamsPassed(examsPassed);
         bean.setPasswordHashed(passwordHashed);
         return bean;
+    }
+
+    //Getters:
+    public byte[] getPasswordHashed()
+    {
+        return passwordHashed;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getAge(){
+        return age;
+    }
+    public int getStudentNr(){
+        return studentNr;
+    }
+    public int getNrExamsPassed(){
+        return examsPassed.size();
+    }
+    public ArrayList<Exam> getExamsPassed() {
+        return examsPassed;
     }
 }

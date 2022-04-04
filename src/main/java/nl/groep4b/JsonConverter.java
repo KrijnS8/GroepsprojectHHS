@@ -11,8 +11,10 @@ public class JsonConverter {
         This class is used to convert an object into json or json back into an object
      */
 
+    //Variables:
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
+    //Methods:
     public static void objectToJson(Object object, String filePath) {
         // Create file at given path
         File file = new File(filePath);

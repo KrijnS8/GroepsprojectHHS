@@ -2,29 +2,36 @@ package nl.groep4b;
 
 public abstract class Question {
     //General class for questions
+
+    //Variables:
     private final String text;
     public abstract boolean askQuestion();
     private final int weight;
 
+    //Constructors:
     public Question(String text, int weight) {
         this.text = text;
         this.weight = weight;
     }
 
+    //Getters:
     public int getWeight() {
         return weight;
     }
-
     public String getText() {
         return text;
     }
 }
 
+//Child class
 class MCQuestion extends Question {
     //implements a multiple choice question
+
+    //Variables:
     private final String[] options;
     private final int correctAnswer;
 
+    //Constructors:
     public MCQuestion(String text, int weight) {
         super(text, weight);
 
@@ -48,6 +55,7 @@ class MCQuestion extends Question {
         this.correctAnswer = correctAnswer;
     }
 
+    //Methods:
     public boolean askQuestion() {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
@@ -69,14 +77,18 @@ class MCQuestion extends Question {
     }
 }
 
+//Child class
 class OpenQuestion extends Question {
+    //Variables
     private final String correctAnswer;
 
+    //Constructors:
     public OpenQuestion(String text, int weight, String correctAnswer) {
         super(text, weight);
         this.correctAnswer = correctAnswer;
     }
 
+    //Methods:
     public boolean askQuestion() {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
@@ -95,14 +107,18 @@ class OpenQuestion extends Question {
     }
 }
 
+//Child class
 class YNQuestion extends Question {
+    //Variables:
     private final boolean correctAnswer;
 
+    //Constructors:
     public YNQuestion(String text, int weight, boolean correctAnswer) {
         super(text, weight);
         this.correctAnswer = correctAnswer;
     }
 
+    //Methods:
     public boolean askQuestion() {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());

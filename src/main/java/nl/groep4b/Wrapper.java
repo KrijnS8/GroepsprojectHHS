@@ -3,7 +3,7 @@ package nl.groep4b;
 import java.util.Formatter;
 
 public final class Wrapper {
-
+    //Variables:
     static final String ANSI_RESET = "\u001B[0m";
     static final String ANSI_BLACK = "\u001B[30m";
     static final String ANSI_RED = "\u001B[31m";
@@ -14,8 +14,8 @@ public final class Wrapper {
     static final String ANSI_CYAN = "\u001B[36m";
     static final String ANSI_WHITE = "\u001B[37m";
 
+    //Methods:
     //takes a color and a string and changes the string to that color
-    //colors available: "black", "red", "green", "yellow", "blue", "purple", "cyan" and "white"(must be spelled correct)
     public static String color(String color, String string){
         String formatBlack = ANSI_BLACK + "%s" + ANSI_RESET;
         String formatRed = ANSI_RED + "%s" + ANSI_RESET;
@@ -26,6 +26,7 @@ public final class Wrapper {
         String formatCyan = ANSI_CYAN + "%s" + ANSI_RESET;
         String formatWhite = ANSI_WHITE + "%s" + ANSI_RESET;
 
+        //colors available: "black", "red", "green", "yellow", "blue", "purple", "cyan" and "white"(must be spelled correct)
         return switch (color) {
             case "black" -> new Formatter().format(formatBlack, string).toString();
             case "red" -> new Formatter().format(formatRed, string).toString();
@@ -40,9 +41,6 @@ public final class Wrapper {
     }
 
     //Takes a string and formats it with numbers and tabs where necessary
-    //a list looks like:    #) String (white number)
-    //an option looks like:  #) String (cyan number)
-    //and an option to go back looks like:#) String (cyan number and no tab)
     public static String count(int count, String string, String type){
         String formatOptions = color("cyan", "    %d) ") + "%s";
         String formatList = color("white", "    %d) ") + "%s";
