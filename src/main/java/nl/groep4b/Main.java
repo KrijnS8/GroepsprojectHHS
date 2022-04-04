@@ -102,7 +102,6 @@ public class Main {
                 break;
             }
         }
-
     }
 
     public static void initialize() {
