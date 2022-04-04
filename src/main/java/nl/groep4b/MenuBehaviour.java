@@ -123,6 +123,7 @@ public final class MenuBehaviour {
         switch (menu)
         {
             case 1:
+                //creates new student
                 try
                 {
                     System.out.print("Naam: ");
@@ -145,6 +146,7 @@ public final class MenuBehaviour {
                     newUser();
                 }
             case 2:
+                //creates new docent
                 System.out.print("Naam: ");
                 String name = scanner.nextLine();
 
@@ -163,6 +165,7 @@ public final class MenuBehaviour {
                 docentBeans.add(docentBean);
                 break;
             case 3:
+                //creates new beheerder
                 System.out.print("Naam: ");
                 name = scanner.nextLine();
 
@@ -184,6 +187,7 @@ public final class MenuBehaviour {
         }
     }
 
+    //returns hashed password
     public static byte[] hashPassword(String password) throws NoSuchAlgorithmException{
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
         messageDigest.update(password.getBytes());
