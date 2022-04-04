@@ -164,28 +164,29 @@ public final class MenuBehaviour {
 
         System.out.println("Toets het nummer van het examen waarvan u wilt zien of " +
                 getStudentName(studentIndex) + " het heeft gehaald.");
-        int examIndex = scanner.nextInt();
+        int examIndexScanner = scanner.nextInt();
+        int examIndex = examIndexScanner - 1;
         scanner.nextLine();
 
         if (getExamsPassed(studentIndex).size() != 0) {
 
             for (Exam exam : getExamsPassed(studentIndex)) {
-                System.out.println(exams.get(examIndex).getExamTitle());
+                System.out.println(getExamTitle(examIndex));
 
                 if (exam.getExamTitle().equals(exams.get(examIndex).getExamTitle())) {
                     System.out.println("Ja, " + getStudentName(studentIndex) +
-                            " heeft " + exams.get(examIndex).getExamTitle() + " gehaald!");
+                            " heeft " + getExamTitle(examIndex) + " gehaald!");
                 }
                 else {
                     System.out.println("Helaas, " + getStudentName(studentIndex) +
-                            " heeft " + exams.get(examIndex).getExamTitle() + " nog niet gehaald.");
+                            " heeft " + getExamsPassed(examIndex) + " nog niet gehaald.");
                 }
             }
         }
 
         else {
             System.out.println("Helaas, " + getStudentName(studentIndex) +
-                    " heeft " + exams.get(examIndex - 1).getExamTitle() + " nog niet gehaald.");
+                    " heeft " + getExamsPassed(examIndex) + " nog niet gehaald.");
         }
     }
 
@@ -276,5 +277,8 @@ public final class MenuBehaviour {
     }
     public static ArrayList<Exam> getExamsPassed(int i){
         return students.get(i).getExamsPassed();
+    }
+    public static String getExamTitle(int i){
+        return exams.get(i).getExamTitle();
     }
 }
