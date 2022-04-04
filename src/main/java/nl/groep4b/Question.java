@@ -38,7 +38,7 @@ class MCQuestion extends Question {
     public MCQuestion(String text, int weight) {
         super(text, weight);
 
-        Scanner2 scanner = new Scanner2();
+        ScannerV2 scanner = new ScannerV2();
         System.out.println("Hoeveel opties heeft de vraag?");
         int optionsNr = scanner.nextInt();
         scanner.nextLine();
@@ -65,7 +65,7 @@ class MCQuestion extends Question {
         for (int i = 0; i < options.length; i++) {
             System.out.println(i+1 + ": " + options[i]);
         }
-        Scanner2 scanner = new Scanner2();
+        ScannerV2 scanner = new ScannerV2();
         int givenAnswer = scanner.nextInt();
         System.out.println();
         // Gives you the correct answer if you gave the wrong answer
@@ -98,7 +98,7 @@ class OpenQuestion extends Question {
     public boolean askQuestion() {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
-        Scanner2 scanner = new Scanner2();
+        ScannerV2 scanner = new ScannerV2();
         String givenAnswer = scanner.nextLine();
         System.out.println();
         // Gives you the correct answer if you gave the wrong answer
@@ -132,7 +132,7 @@ class YNQuestion extends Question {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
         System.out.println("true of false");
-        Scanner2 scanner = new Scanner2();
+        ScannerV2 scanner = new ScannerV2();
         boolean givenAnswer = scanner.nextBoolean();
         System.out.println();
         // Gives you the correct answer if you gave the wrong answer
