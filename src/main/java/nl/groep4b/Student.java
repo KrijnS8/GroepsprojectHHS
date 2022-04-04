@@ -72,7 +72,7 @@ public class Student {
     public void printExamsPassed() {
         if(examsPassed.size() > 0)
             for (Exam exam : examsPassed){
-                System.out.println(Wrapper.count(examsPassed.indexOf(exam)+1, exam.examTitle, Main.LIST));
+                System.out.println(Wrapper.count(examsPassed.indexOf(exam)+1, exam.getExamTitle(), Main.LIST));
         }
         else {
             System.out.println("Deze student heeft nog geen examens gehaald.");

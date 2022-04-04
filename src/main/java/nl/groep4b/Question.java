@@ -1,7 +1,5 @@
 package nl.groep4b;
 
-import java.util.Scanner;
-
 public abstract class Question {
     //General class for questions
     private final String text;
@@ -26,6 +24,23 @@ class MCQuestion extends Question {
     //implements a multiple choice question
     private final String[] options;
     private final int correctAnswer;
+
+    public MCQuestion(String text, int weight) {
+        super(text, weight);
+
+        Scanner2 scanner = new Scanner2();
+        System.out.println("Hoeveel opties heeft de vraag?");
+        int optionsNr = scanner.nextInt();
+        scanner.nextLine();
+        options = new String[optionsNr];
+        for (int i = 0; i < optionsNr; i++) {
+            System.out.println("Geef optie: " + (i + 1));
+            options[i] = scanner.nextLine();
+        }
+        System.out.println("Welke optie is correct?");
+        correctAnswer = scanner.nextInt();
+
+    }
 
     public MCQuestion(String text, int weight, String[] options, int correctAnswer) {
         super(text, weight);
@@ -52,7 +67,6 @@ class MCQuestion extends Question {
             return false;
         }
     }
-
 }
 
 class OpenQuestion extends Question {

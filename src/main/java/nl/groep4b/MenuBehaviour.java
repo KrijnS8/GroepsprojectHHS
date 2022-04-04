@@ -193,17 +193,7 @@ public final class MenuBehaviour {
             scanner.nextLine();
             switch (choice) {
                 case 1 -> {
-                    System.out.println("Hoeveel opties heeft de vraag?");
-                    int optionsNr = scanner.nextInt();
-                    scanner.nextLine();
-                    String[] options = new String[optionsNr];
-                    for (int i = 0; i < optionsNr; i++) {
-                        System.out.println("Geef optie: " + (i + 1));
-                        options[i] = scanner.nextLine();
-                    }
-                    System.out.println("Welke optie is correct?");
-                    int correctAnswerMC = scanner.nextInt();
-                    Question mcquestion = new MCQuestion(title, weight, options, correctAnswerMC);
+                    Question mcquestion = new MCQuestion(title, weight);
                     questions.add(mcquestion);
                 }
                 case 2 -> {
