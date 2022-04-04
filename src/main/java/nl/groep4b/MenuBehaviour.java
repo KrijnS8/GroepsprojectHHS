@@ -14,13 +14,15 @@ public final class MenuBehaviour {
 
     //Initialize the arrays
     public static void initializeArrays() {
+        //gets all the HashMaps from Json file
         ArrayList<LinkedHashMap> studentMaps =
                 new ArrayList<>(JsonConverter.jsonToObject("student.json", ArrayList.class));
-
+        //converts LinkedHashMap to Student object
         for (LinkedHashMap studentMap : studentMaps) {
             students.add(new Student((String) studentMap.get("name"),
                     (Integer) studentMap.get("age"),
                     (Integer) studentMap.get("studentNr"),
+                    //decode byte array from json file
                     Base64.decodeBase64((String) studentMap.get("passwordHashed")),
                     false));
         }

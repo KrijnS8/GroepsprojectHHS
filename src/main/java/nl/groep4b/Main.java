@@ -78,6 +78,7 @@ public class Main {
         byte[] wachtwoordHased = new byte[0];
         try
         {
+            //hashes password to byte array
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(wachtwoord.getBytes());
             wachtwoordHased = messageDigest.digest();
@@ -85,12 +86,13 @@ public class Main {
         {
             e.printStackTrace();
         }
+        //checks if "gebruikersnaam" exist in Arraylist of users
         for(Student student: students){
             if(gebruikersnaam.equals(student.getName()))
             {
+                //checks if hashed password is equal to stored hashed password
                 if (!Arrays.equals(wachtwoordHased, student.getPasswordHashed()))
                 {
-                    //replace "temp" with get hash from Json
                     System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
                     System.out.println("Klik op enter om nog een keer te proberen");
                     System.out.println("Vul 0 in om uit het programma te gaan");
@@ -99,7 +101,6 @@ public class Main {
                     else
                         System.exit(0);
                 }
-                break;
             }
         }
     }
@@ -174,6 +175,7 @@ public class Main {
             studentBeans.add(student.getBean());
         }
         JsonConverter.objectToJson(studentBeans, "student.json");
+
     }
 
     //Create a new menuItem(in red) which asks if you want to go back to the main menu by typing 0 (zero)
