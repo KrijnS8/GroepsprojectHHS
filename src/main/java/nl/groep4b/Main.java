@@ -1,5 +1,7 @@
 package nl.groep4b;
 
+import nl.groep4b.beans.BeheerderBean;
+import nl.groep4b.beans.DocentBean;
 import nl.groep4b.beans.StudentBean;
 
 import java.security.NoSuchAlgorithmException;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
-import static nl.groep4b.MenuBehaviour.students;
+import static nl.groep4b.MenuBehaviour.*;
 
 public class Main {
 
@@ -25,7 +27,7 @@ public class Main {
 
     static final String MENU_ITEM_1 = "Lijst met examens";
     static final String MENU_ITEM_2 = "Lijst met studenten";
-    static final String MENU_ITEM_3 = "Nieuwe student inschrijven";
+    static final String MENU_ITEM_3 = "Nieuwe gebruiker aanmaken";
     static final String MENU_ITEM_4 = "Student verwijderen";
     static final String MENU_ITEM_5 = "Examen afnemen";
     static final String MENU_ITEM_6 = "Is student geslaagd voor test?";
@@ -59,12 +61,12 @@ public class Main {
             chooseRole();
         }
         else {
-            if(input != 4)login();
+            if(input != 4)login(input);
             role = input;
         }
     }
 
-    public static void login()
+    public static void login(int input)
     {
         System.out.println("Vul uw gebruikersnaam in: ");
         String gebruikersnaam = scanner.nextLine();
@@ -83,21 +85,44 @@ public class Main {
             e.printStackTrace();
         }
         //checks if "gebruikersnaam" exist in Arraylist of users
-        for(Student student: students){
-            if(gebruikersnaam.equals(student.getName()))
+        ArrayList<User> users = new ArrayList<>();
+        switch (input)
+        {
+            case 1:
+            for (Student student: students){
+                users.add(new User(student.getName(), student.getPasswordHashed()));
+            }
+            break;
+            case 2:
+                for(DocentBean docentBean: docentBeans){
+                    users.add(new User(docentBean.getName(), docentBean.getPasswordHashed()));
+                }
+                break;
+            case 3:
+                for(BeheerderBean beheerderBean: beheerderBeans){
+                    users.add(new User(beheerderBean.getName(), beheerderBean.getPasswordHashed()));
+                }
+        }
+        boolean passwordCorrect = false;
+        for(User user: users){
+            if(gebruikersnaam.equals(user.getName()))
             {
                 //checks if hashed password is equal to stored hashed password
-                if (!Arrays.equals(wachtwoordHased, student.getPasswordHashed()))
+                if (Arrays.equals(wachtwoordHased, user.getPasswordHashed()))
                 {
-                    System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
-                    System.out.println("Klik op enter om nog een keer te proberen");
-                    System.out.println("Vul 0 in om uit het programma te gaan");
-                    if (scanner.nextLine().equals(""))
-                        login();
-                    else
-                        System.exit(0);
+                    passwordCorrect = true;
+                    break;
                 }
             }
+        }
+        if(!passwordCorrect){
+            System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
+            System.out.println("Klik op enter om nog een keer te proberen");
+            System.out.println("Vul 0 in om uit het programma te gaan");
+            if (scanner.nextLine().equals(""))
+                login(input);
+            else
+                System.exit(0);
         }
     }
 
@@ -108,7 +133,7 @@ public class Main {
 
         MenuItem examList = new MenuItem(MENU_ITEM_1, OPTIONS,1);
         MenuItem studentList = new MenuItem(MENU_ITEM_2, OPTIONS, 2);
-        MenuItem newStudent = new MenuItem(MENU_ITEM_3, OPTIONS, 3);
+        MenuItem newUser = new MenuItem(MENU_ITEM_3, OPTIONS, 3);
         MenuItem delStudent = new MenuItem(MENU_ITEM_4, OPTIONS, 4);
         MenuItem doExam = new MenuItem(MENU_ITEM_5, OPTIONS, 5);
         MenuItem studentPassedExams = new MenuItem(MENU_ITEM_6, OPTIONS, 6);
@@ -139,7 +164,7 @@ public class Main {
             case 2:
                 mainMenuItems.add(examList);
                 mainMenuItems.add(studentList);
-                mainMenuItems.add(newStudent);
+                mainMenuItems.add(newUser);
                 mainMenuItems.add(delStudent);
                 mainMenuItems.add(studentPassedExams);
                 mainMenuItems.add(examsPassed);
@@ -151,7 +176,7 @@ public class Main {
             case 3:
                 mainMenuItems.add(examList);
                 mainMenuItems.add(studentList);
-                mainMenuItems.add(newStudent);
+                mainMenuItems.add(newUser);
                 mainMenuItems.add(delStudent);
                 mainMenuItems.add(doExam);
                 mainMenuItems.add(studentPassedExams);
@@ -173,7 +198,8 @@ public class Main {
         }
 
         JsonConverter.objectToJson(studentBeans, "student.json");
-
+        JsonConverter.objectToJson(docentBeans, "docent.json");
+        JsonConverter.objectToJson(beheerderBeans, "beheerder.json");
     }
 
     //Create a new menuItem(in red) which asks if you want to go back to the main menu by typing 0 (zero)
@@ -217,7 +243,7 @@ public class Main {
                 backToMenu();
                 break;
             case 3:
-                MenuBehaviour.newStudent();
+                MenuBehaviour.newUser();
                 backToMenu();
                 break;
             case 4:

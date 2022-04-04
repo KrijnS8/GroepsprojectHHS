@@ -1,7 +1,14 @@
 package nl.groep4b;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
+
+import nl.groep4b.beans.BeheerderBean;
+import nl.groep4b.beans.DocentBean;
 import org.apache.commons.codec.binary.Base64;
+
+import javax.print.Doc;
 
 public final class MenuBehaviour {
     /**
@@ -11,6 +18,8 @@ public final class MenuBehaviour {
     //Variables:
     static Scanner2 scanner = new Scanner2();
     public static ArrayList<Student> students = new ArrayList<>();
+    public static ArrayList<DocentBean> docentBeans = new ArrayList<>();
+    public static ArrayList<BeheerderBean> beheerderBeans = new ArrayList<>();
     static ArrayList<Exam> exams = new ArrayList<>();
 
     static final String LIST = "list";
@@ -31,6 +40,29 @@ public final class MenuBehaviour {
                     Base64.decodeBase64((String) studentMap.get("passwordHashed")),
                     false));
         }
+
+        ArrayList<LinkedHashMap> docentmaps =
+                new ArrayList<>(JsonConverter.jsonToObject("docent.json", ArrayList.class));
+        //converts LinkedHashMap to Student object
+        for (LinkedHashMap docentmap : docentmaps) {
+            DocentBean docentBean = new DocentBean();
+            docentBean.setName((String) docentmap.get("name"));
+            docentBean.setPasswordHashed(Base64.decodeBase64((String) docentmap.get("passwordHashed")));
+            docentBeans.add(docentBean);
+        }
+
+        ArrayList<LinkedHashMap> beheerdermaps =
+                new ArrayList<>(JsonConverter.jsonToObject("beheerder.json", ArrayList.class));
+        //converts LinkedHashMap to Student object
+        for (LinkedHashMap beheerdermap : beheerdermaps) {
+            BeheerderBean beheerderBean = new BeheerderBean();
+            beheerderBean.setName((String) beheerdermap.get("name"));
+            beheerderBean.setPasswordHashed(Base64.decodeBase64((String) beheerdermap.get("passwordHashed")));
+            beheerderBeans.add(beheerderBean);
+        }
+
+
+
         //Initialize exams with 2 exams: English 101 en Calculus 101
         Question ynTest = new YNQuestion("Is this test hard?",
                 5,
@@ -84,30 +116,78 @@ public final class MenuBehaviour {
 
     // asks for a name, age and studentNr and adds this to the list of students as a new Student Object
     // then show the list of students again
-    public static void newStudent() {
-        System.out.println("Nieuwe student toevoegen\n");
+    public static void newUser()
+    {
+        System.out.println(" 1) Nieuwe student toevoegen\n 2) Nieuwe docent toevoegen\n 3) Nieuwe beheerder toevoegen\n 4) Terug naar het hoofdmenu");
+        int menu = scanner.nextInt();
+        switch (menu)
+        {
+            case 1:
+                try
+                {
+                    System.out.print("Naam: ");
+                    String name = scanner.nextLine();
 
-        try {
-            System.out.print("Naam: ");
-            String name = scanner.nextLine();
+                    System.out.print("Leeftijd: ");
+                    int age = scanner.nextInt();
 
-            System.out.print("Leeftijd: ");
-            int age = scanner.nextInt();
+                    System.out.print("Leerling nummer: ");
+                    int leerlingNr = scanner.nextInt();
 
-            System.out.print("Leerling nummer: ");
-            int leerlingNr = scanner.nextInt();
+                    System.out.print("Leerling wachtwoord");
+                    String password = scanner.nextLine();
 
-            System.out.print("Leerling wachtwoord");
-            String password = scanner.nextLine();
+                    students.add(new Student(name, age, leerlingNr, password.getBytes(), true));
+                    showStudentList(LIST);
+                } catch (InputMismatchException ime)
+                {
+                    System.out.println("Error: Probeer het opnieuw");
+                    newUser();
+                }
+            case 2:
+                System.out.print("Naam: ");
+                String name = scanner.nextLine();
 
-            students.add(new Student(name, age, leerlingNr, password.getBytes(), true));
-            showStudentList(LIST);
+                System.out.print("Wachtwoord: ");
+                String password = scanner.nextLine();
+                DocentBean docentBean = new DocentBean();
+                docentBean.setName(name);
+                try
+                {
+                    docentBean.setPasswordHashed(hashPassword(password));
+                } catch (NoSuchAlgorithmException e)
+                {
+                    System.out.println("Iets ging verkeerd, probeer het opnieuw.");
+                    newUser();
+                }
+                docentBeans.add(docentBean);
+                break;
+            case 3:
+                System.out.print("Naam: ");
+                name = scanner.nextLine();
+
+                System.out.print("Wachtwoord: ");
+                password = scanner.nextLine();
+                BeheerderBean beheerderBean = new BeheerderBean();
+                beheerderBean.setName(name);
+                try
+                {
+                    beheerderBean.setPasswordHashed(hashPassword(password));
+                } catch (NoSuchAlgorithmException e)
+                {
+                    System.out.println("Iets ging verkeerd, probeer het opnieuw.");
+                    newUser();
+                }
+                beheerderBeans.add(beheerderBean);
+            default:
+            break;
         }
+    }
 
-        catch (InputMismatchException ime) {
-            System.out.println("Error: Probeer het opnieuw");
-            newStudent();
-        }
+    public static byte[] hashPassword(String password) throws NoSuchAlgorithmException{
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+        messageDigest.update(password.getBytes());
+        return messageDigest.digest();
     }
 
     //Show the list of students and delete the student associated with the number that is typed

@@ -1,17 +1,19 @@
 package nl.groep4b.beans;
 
+import org.apache.commons.codec.binary.Base64;
+
 public class DocentBean
 {
     //Variables:
     private String name;
-    private String passwordHashed;
+    private byte[] passwordHashed;
 
     //Getters:
     public String getName()
     {
         return name;
     }
-    public String getPasswordHashed()
+    public byte[] getPasswordHashed()
     {
         return passwordHashed;
     }
@@ -21,7 +23,7 @@ public class DocentBean
     {
         this.name = name;
     }
-    public void setPasswordHashed(String passwordHashed)
+    public void setPasswordHashed(byte[] passwordHashed)
     {
         this.passwordHashed = passwordHashed;
     }
