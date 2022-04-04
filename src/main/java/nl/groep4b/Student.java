@@ -5,7 +5,6 @@ import org.apache.commons.codec.binary.Base64;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Student {
