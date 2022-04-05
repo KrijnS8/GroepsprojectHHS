@@ -72,10 +72,6 @@ public class Student {
     }
 
     //Getters:
-    public byte[] getPasswordHashed()
-    {
-        return passwordHashed;
-    }
     public String getName() {
         return name;
     }
@@ -84,6 +80,10 @@ public class Student {
     }
     public int getStudentNr(){
         return studentNr;
+    }
+    public byte[] getPasswordHashed()
+    {
+        return passwordHashed;
     }
     public int getNrExamsPassed(){
         return examsPassed.size();
