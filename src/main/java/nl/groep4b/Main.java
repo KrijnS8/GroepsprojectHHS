@@ -84,7 +84,8 @@ public class Main {
         {
             e.printStackTrace();
         }
-        //checks if "gebruikersnaam" exist in Arraylist of users
+
+        //put a speciefied type of users in the arraylist users
         ArrayList<User> users = new ArrayList<>();
         switch (input)
         {
@@ -103,17 +104,15 @@ public class Main {
                     users.add(new User(beheerderBean.getName(), beheerderBean.getPasswordHashed()));
                 }
         }
+        //checks if Arraylist users contains user with correct name and password
         boolean passwordCorrect = false;
         for(User user: users){
-            if(gebruikersnaam.equals(user.getName()))
+            if (gebruikersnaam.equals(user.getName()) & Arrays.equals(wachtwoordHased, user.getPasswordHashed()))
             {
-                //checks if hashed password is equal to stored hashed password
-                if (Arrays.equals(wachtwoordHased, user.getPasswordHashed()))
-                {
-                    passwordCorrect = true;
-                    break;
-                }
+                passwordCorrect = true;
+                break;
             }
+
         }
         if(!passwordCorrect){
             System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
