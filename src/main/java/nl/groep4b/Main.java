@@ -169,8 +169,6 @@ public class Main {
             case 2:
                 mainMenuItems.add(examList);
                 mainMenuItems.add(studentList);
-                mainMenuItems.add(newUser);
-                mainMenuItems.add(delStudent);
                 mainMenuItems.add(studentPassedExams);
                 mainMenuItems.add(examsPassed);
                 mainMenuItems.add(mostExamsPassed);
@@ -183,7 +181,6 @@ public class Main {
                 mainMenuItems.add(studentList);
                 mainMenuItems.add(newUser);
                 mainMenuItems.add(delStudent);
-                mainMenuItems.add(doExam);
                 mainMenuItems.add(studentPassedExams);
                 mainMenuItems.add(examsPassed);
                 mainMenuItems.add(mostExamsPassed);
