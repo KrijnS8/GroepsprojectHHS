@@ -4,11 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-import nl.groep4b.beans.BeheerderBean;
-import nl.groep4b.beans.DocentBean;
 import org.apache.commons.codec.binary.Base64;
-
-import javax.print.Doc;
 
 public final class MenuBehaviour {
     /**

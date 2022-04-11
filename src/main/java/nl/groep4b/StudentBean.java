@@ -1,4 +1,4 @@
-package nl.groep4b.beans;
+package nl.groep4b;
 
 import nl.groep4b.Exam;
 import org.apache.commons.codec.binary.Base64;

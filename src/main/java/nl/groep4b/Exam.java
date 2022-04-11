@@ -1,9 +1,6 @@
 package nl.groep4b;
-import nl.groep4b.beans.ExamBean;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Exam {
     /**
@@ -28,6 +25,24 @@ public class Exam {
     public Exam(String examTitle, Question[] questions, int pointsToPass){
         this(examTitle, questions);
         this.pointsToPass = pointsToPass;
+    }
+
+    public Exam(ExamBean bean) {
+        this.examTitle = bean.getExamTitle();
+        this.pointsToPass = bean.getPointsToPass();
+        this.maxPoints = bean.getMaxPoints();
+
+        ArrayList<Question> returnedQuestions = new ArrayList<>();
+        for (QuestionBean questionBean : bean.getQuestions()) {
+            switch (questionBean.getQuestionType()) {
+                case QuestionBean.MC_QUESTION_TYPE -> returnedQuestions.add(new MCQuestion(questionBean));
+                case QuestionBean.OPEN_QUESTION_TYPE -> returnedQuestions.add(new OpenQuestion(questionBean));
+                case QuestionBean.YN_QUESTION_TYPE -> returnedQuestions.add(new YNQuestion(questionBean));
+                default -> throw new RuntimeException();
+            }
+        }
+
+        this.questions = returnedQuestions.toArray(new Question[0]);
     }
 
     //Methods:
@@ -57,7 +72,13 @@ public class Exam {
         bean.setExamTitle(examTitle);
         bean.setPointsToPass(pointsToPass);
         bean.setMaxPoints(maxPoints);
-        bean.setQuestions(questions);
+
+        ArrayList<QuestionBean> questionBeans = new ArrayList<>();
+        for (Question question : questions) {
+            questionBeans.add(question.getBean());
+        }
+
+        bean.setQuestions(questionBeans.toArray(new QuestionBean[0]));
         return bean;
     }
 
