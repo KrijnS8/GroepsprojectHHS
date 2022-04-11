@@ -65,22 +65,12 @@ public class Main {
 
     public static void login(int input)
     {
-        System.out.println("Vul uw gebruikersnaam in: ");
-        String gebruikersnaam = scanner.nextLine();
+        System.out.println("Vul uw username in: ");
+        String username = scanner.nextLine();
 
         System.out.println("Vul hier uw Wachtwoord in");
-        String wachtwoord = scanner.nextLine();
-        byte[] wachtwoordHased = new byte[0];
-        try
-        {
-            //hashes password to byte array
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(wachtwoord.getBytes());
-            wachtwoordHased = messageDigest.digest();
-        } catch (NoSuchAlgorithmException e)
-        {
-            e.printStackTrace();
-        }
+        String password = scanner.nextLine();
+        byte[] passwordHashed = PasswordHasher.hashToByteArray(password);
 
         //put a specified type of user in the arraylist users
         ArrayList<User> users = new ArrayList<>();
@@ -104,7 +94,7 @@ public class Main {
         //checks if Arraylist users contains user with correct name and password
         boolean passwordCorrect = false;
         for(User user: users){
-            if (gebruikersnaam.equals(user.getName()) & Arrays.equals(wachtwoordHased, user.getPasswordHashed()))
+            if (username.equals(user.getName()) & Arrays.equals(passwordHashed, user.getPasswordHashed()))
             {
                 if(input == 1) saveLoggedInStudent(user.getName());
                 passwordCorrect = true;
@@ -113,7 +103,7 @@ public class Main {
         }
 
         if(!passwordCorrect){
-            System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
+            System.out.println("Gebruikersnaam of password is verkeerd");
             System.out.println("Klik op enter om nog een keer te proberen");
             System.out.println("Vul 0 in om uit het programma te gaan");
             if (scanner.nextLine().equals(""))
