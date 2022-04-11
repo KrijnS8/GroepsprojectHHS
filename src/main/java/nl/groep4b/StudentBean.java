@@ -12,7 +12,7 @@ public class StudentBean {
     private int age;
     private int studentNr;
     private ArrayList<Exam> examsPassed = new ArrayList<>();
-    private byte[] passwordHashed;
+    private String passwordHashed;
 
     //Constructors:
     public StudentBean() {
@@ -34,7 +34,7 @@ public class StudentBean {
     }
     public String getPasswordHashed()
     {
-        return Base64.encodeBase64String(passwordHashed);
+        return passwordHashed;
     }
 
     //Setters:
@@ -50,7 +50,7 @@ public class StudentBean {
     public void setExamsPassed(ArrayList<Exam> examsPassed) {
         this.examsPassed = examsPassed;
     }
-    public void setPasswordHashed(byte[] passwordHashed)
+    public void setPasswordHashed(String passwordHashed)
     {
         this.passwordHashed = passwordHashed;
     }

@@ -4,8 +4,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-import org.apache.commons.codec.binary.Base64;
-
 public final class MenuBehaviour {
     /**
      * This class has static methods for the behaviour of several menu options
@@ -25,38 +23,19 @@ public final class MenuBehaviour {
     //Initialize the arrays
     public static void initializeArrays() {
         //gets all the HashMaps from Json file
-        ArrayList<LinkedHashMap> studentMaps =
-                new ArrayList<>(JsonConverter.jsonToObject("student.json", ArrayList.class));
-        //converts LinkedHashMap to Student object
-        for (LinkedHashMap studentMap : studentMaps) {
-            students.add(new Student((String) studentMap.get("name"),
-                    (Integer) studentMap.get("age"),
-                    (Integer) studentMap.get("studentNr"),
-                    //decode byte array from json file
-                    Base64.decodeBase64((String) studentMap.get("passwordHashed")),
-                    false));
+        //student.json
+        ArrayList<StudentBean> studentBeans = JsonConverter.jsonToObjectArrayList("student.json", StudentBean.class);
+        for (StudentBean bean : studentBeans) {
+            students.add(new Student(bean));
         }
 
-        ArrayList<LinkedHashMap> docentmaps =
-                new ArrayList<>(JsonConverter.jsonToObject("docent.json", ArrayList.class));
-        //converts LinkedHashMap to Student object
-        for (LinkedHashMap docentmap : docentmaps) {
-            DocentBean docentBean = new DocentBean();
-            docentBean.setName((String) docentmap.get("name"));
-            docentBean.setPasswordHashed(Base64.decodeBase64((String) docentmap.get("passwordHashed")));
-            docentBeans.add(docentBean);
-        }
+        //docent.json
+        ArrayList<DocentBean> docent = JsonConverter.jsonToObjectArrayList("docent.json", DocentBean.class);
+        docentBeans.addAll(docent);
 
-        ArrayList<LinkedHashMap> beheerdermaps =
-                new ArrayList<>(JsonConverter.jsonToObject("beheerder.json", ArrayList.class));
-        //converts LinkedHashMap to Student object
-        for (LinkedHashMap beheerdermap : beheerdermaps) {
-            BeheerderBean beheerderBean = new BeheerderBean();
-            beheerderBean.setName((String) beheerdermap.get("name"));
-            beheerderBean.setPasswordHashed(Base64.decodeBase64((String) beheerdermap.get("passwordHashed")));
-            beheerderBeans.add(beheerderBean);
-        }
-
+        //beheerder.json
+        ArrayList<BeheerderBean> beheerder = JsonConverter.jsonToObjectArrayList("beheerder.json", BeheerderBean.class);
+        beheerderBeans.addAll(beheerder);
 
 
         //Initialize exams with 2 exams: English 101 en Calculus 101
@@ -134,7 +113,7 @@ public final class MenuBehaviour {
                     System.out.print("Leerling wachtwoord");
                     String password = scanner.nextLine();
 
-                    students.add(new Student(name, age, leerlingNr, password.getBytes(), true));
+                    students.add(new Student(name, age, leerlingNr, PasswordHasher.hashToByteArray(password), true));
                     showStudentList(LIST);
                 } catch (InputMismatchException ime)
                 {

@@ -1,9 +1,11 @@
 package nl.groep4b;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class JsonConverter {
     /**
@@ -25,12 +27,14 @@ public class JsonConverter {
         }
     }
 
-    public static <T> T jsonToObject(String filePath, Class<T> objectType) {
+    public static <T> ArrayList<T> jsonToObjectArrayList(String filePath, Class<T> objectType) {
         // Create file at given path
         File file = new File(filePath);
         try {
             // Try to read json file and return data in an instance of given object type
-            return MAPPER.readValue(file, objectType);
+            CollectionType listType =
+                    MAPPER.getTypeFactory().constructCollectionType(ArrayList.class, objectType);
+            return MAPPER.readValue(file, listType);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

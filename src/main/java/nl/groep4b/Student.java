@@ -23,21 +23,7 @@ public class Student {
         this.name = name;
         this.age = age;
         this.studentNr = studentNr;
-        if(needsToBeHashed)
-        {
-            try
-            {
-                //hashes password
-                MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-                messageDigest.update(password);
-                this.passwordHashed = messageDigest.digest();
-            } catch (NoSuchAlgorithmException e)
-            {
-                e.printStackTrace();
-            }
-        } else {
-            this.passwordHashed = password;
-        }
+        this.passwordHashed = password;
     }
 
     public Student(StudentBean bean) {
@@ -66,7 +52,7 @@ public class Student {
         bean.setAge(age);
         bean.setStudentNr(studentNr);
         bean.setExamsPassed(examsPassed);
-        bean.setPasswordHashed(passwordHashed);
+        bean.setPasswordHashed(PasswordHasher.byteArrayToString(passwordHashed));
         return bean;
     }
 
