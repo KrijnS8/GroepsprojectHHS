@@ -1,51 +1,45 @@
-package nl.groep4b.beans;
-
-import nl.groep4b.Question;
+package nl.groep4b;
 
 public class ExamBean {
 
-    //Variables:
     private String examTitle;
     private int pointsToPass;
     private int maxPoints;
-    private Question[] questions;
+    private QuestionBean[] questions;
 
-    //Constructors:
     public ExamBean() {
         // Empty constructor
     }
 
-    //Getters:
     public String getExamTitle() {
         return examTitle;
     }
-    public int getPointsToPass() {
-        return pointsToPass;
-    }
-    public int getMaxPoints() {
-        return maxPoints;
-    }
-    public Question[] getQuestions() {
-        return questions;
-    }
 
-    //Setters:
     public void setExamTitle(String examTitle) {
         this.examTitle = examTitle;
     }
+
+    public int getPointsToPass() {
+        return pointsToPass;
+    }
+
     public void setPointsToPass(int pointsToPass) {
         this.pointsToPass = pointsToPass;
     }
+
+    public int getMaxPoints() {
+        return maxPoints;
+    }
+
     public void setMaxPoints(int maxPoints) {
         this.maxPoints = maxPoints;
     }
-    public void setQuestions(Question[] questions) {
+
+    public QuestionBean[] getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(QuestionBean[] questions) {
         this.questions = questions;
     }
 }
-
-
-
-
-
-

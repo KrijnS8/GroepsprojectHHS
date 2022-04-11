@@ -8,12 +8,18 @@ public abstract class Question {
     //Variables:
     private final String text;
     public abstract boolean askQuestion();
+    public abstract QuestionBean getBean();
     private final int weight;
 
     //Constructors:
     public Question(String text, int weight) {
         this.text = text;
         this.weight = weight;
+    }
+
+    public Question(QuestionBean bean) {
+        this.text = bean.getText();
+        this.weight = bean.getWeight();
     }
 
     //Getters:
@@ -58,7 +64,14 @@ class MCQuestion extends Question {
         this.correctAnswer = correctAnswer;
     }
 
+    public MCQuestion(QuestionBean bean) {
+        super(bean.getText(), bean.getWeight());
+        this.options = bean.getMCQuestionOptions();
+        this.correctAnswer = bean.getMCQuestionsCorrectAnswer();
+    }
+
     //Methods:
+    @Override
     public boolean askQuestion() {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
@@ -78,6 +91,17 @@ class MCQuestion extends Question {
             return false;
         }
     }
+
+    @Override
+    public QuestionBean getBean() {
+        QuestionBean bean = new QuestionBean();
+        bean.setText(this.getText());
+        bean.setWeight(this.getWeight());
+        bean.setQuestionType(QuestionBean.MC_QUESTION_TYPE);
+        bean.setMCQuestionOptions(options);
+        bean.setMCQuestionsCorrectAnswer(correctAnswer);
+        return bean;
+    }
 }
 
 class OpenQuestion extends Question {
@@ -94,7 +118,13 @@ class OpenQuestion extends Question {
         this.correctAnswer = correctAnswer;
     }
 
+    public OpenQuestion(QuestionBean bean) {
+        super(bean.getText(), bean.getWeight());
+        this.correctAnswer = bean.getOpenQuestionCorrectAnswer();
+    }
+
     //Methods:
+    @Override
     public boolean askQuestion() {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
@@ -110,6 +140,16 @@ class OpenQuestion extends Question {
             System.out.println();
             return false;
         }
+    }
+
+    @Override
+    public QuestionBean getBean() {
+        QuestionBean bean = new QuestionBean();
+        bean.setText(this.getText());
+        bean.setWeight(this.getWeight());
+        bean.setQuestionType(QuestionBean.OPEN_QUESTION_TYPE);
+        bean.setOpenQuestionCorrectAnswer(correctAnswer);
+        return bean;
     }
 }
 
@@ -127,7 +167,13 @@ class YNQuestion extends Question {
         this.correctAnswer = correctAnswer;
     }
 
+    public YNQuestion(QuestionBean bean) {
+        super(bean.getText(), bean.getWeight());
+        this.correctAnswer = bean.isYNQuestionCorrectAnswer();
+    }
+
     //Methods:
+    @Override
     public boolean askQuestion() {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
@@ -144,5 +190,15 @@ class YNQuestion extends Question {
             System.out.println();
             return false;
         }
+    }
+
+    @Override
+    public QuestionBean getBean() {
+        QuestionBean bean = new QuestionBean();
+        bean.setText(this.getText());
+        bean.setWeight(this.getWeight());
+        bean.setQuestionType(QuestionBean.YN_QUESTION_TYPE);
+        bean.setYNQuestionCorrectAnswer(correctAnswer);
+        return bean;
     }
 }

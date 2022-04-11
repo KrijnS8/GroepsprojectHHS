@@ -1,9 +1,5 @@
 package nl.groep4b;
 
-import nl.groep4b.beans.BeheerderBean;
-import nl.groep4b.beans.DocentBean;
-import nl.groep4b.beans.StudentBean;
-
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.security.MessageDigest;

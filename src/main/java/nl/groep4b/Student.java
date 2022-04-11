@@ -1,6 +1,5 @@
 package nl.groep4b;
 
-import nl.groep4b.beans.StudentBean;
 import org.apache.commons.codec.binary.Base64;
 
 import java.security.MessageDigest;
