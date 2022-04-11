@@ -56,6 +56,12 @@ public class Student {
         return bean;
     }
 
+    public void passedExam(Exam exam) {
+        if (!examsPassed.contains(exam)){
+            examsPassed.add(exam);
+        }
+    }
+
     //Getters:
     public String getName() {
         return name;
@@ -75,5 +81,10 @@ public class Student {
     }
     public ArrayList<Exam> getExamsPassed() {
         return examsPassed;
+    }
+
+    public void setExamsPassed(ArrayList<Exam> examsPassed)
+    {
+        this.examsPassed = examsPassed;
     }
 }

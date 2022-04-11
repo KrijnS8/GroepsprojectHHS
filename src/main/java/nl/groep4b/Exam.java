@@ -60,6 +60,7 @@ public class Exam {
             }
         }
         if (points >= pointsToPass) {
+            Main.loggedInStudent.passedExam(this);
             System.out.println("Congratulations, you passed the exam with a score of " + points + " out of " + maxPoints + ".");
         }
         else {

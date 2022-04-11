@@ -3,6 +3,8 @@ package nl.groep4b;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +13,7 @@ public class ExamTest {
     Question testOpenQuestion = new OpenQuestion("In welke stad is de HHS?", 5, "Den Haag");
     Question testYNquestion = new YNQuestion("Is dit een ja/nee vraag?", 5, true);
     Exam exam = new Exam("testExam", new Question[] {testMCquestion, testOpenQuestion, testYNquestion});
+    Exam oneQexam = new Exam("testExam", new Question[] {testYNquestion});
 
     @Test
     public void testQuestions() {
@@ -31,11 +34,12 @@ public class ExamTest {
 
     @Test
     public void testExam() {
-        /*String userInput = "2" + System.getProperty("line.separator")
-                + "2" + System.getProperty("line.separator") + "true" + System.getProperty("line.separator");
-        ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayInputStream in = new ByteArrayInputStream("true\n".getBytes());
         System.setIn(in);
-        exam.doExam();*/
+        System.setOut(new PrintStream(outContent));
+        oneQexam.doExam();
+        assertTrue(outContent.toString().contains("Congratulations, you passed the exam with a score of 5 out of 5."));
 
         assertEquals("testExam", exam.getExamTitle());
         assertEquals(15/2, exam.getPointsToPass());
