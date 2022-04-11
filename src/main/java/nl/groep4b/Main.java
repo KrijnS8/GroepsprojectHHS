@@ -13,6 +13,7 @@ public class Main {
     static ScannerV2 scanner = new ScannerV2();
     static ArrayList<MenuItem> mainMenuItems = new ArrayList<>();
     static ArrayList<MenuItem> roleMenuItems = new ArrayList<>();
+    static Student loggedInStudent;
     static int choice;
     private static int role;
 
@@ -105,10 +106,12 @@ public class Main {
         for(User user: users){
             if (gebruikersnaam.equals(user.getName()) & Arrays.equals(wachtwoordHased, user.getPasswordHashed()))
             {
+                if(input == 1) saveLoggedInStudent(user.getName());
                 passwordCorrect = true;
                 break;
             }
         }
+
         if(!passwordCorrect){
             System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
             System.out.println("Klik op enter om nog een keer te proberen");
@@ -117,6 +120,14 @@ public class Main {
                 login(input);
             else
                 System.exit(0);
+        }
+    }
+
+    public static void saveLoggedInStudent(String studentName){
+        for(Student student: students){
+            if(student.getName().equals(studentName)){
+                loggedInStudent = student;
+            }
         }
     }
 
