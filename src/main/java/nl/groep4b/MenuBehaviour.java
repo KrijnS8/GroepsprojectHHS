@@ -33,12 +33,14 @@ public final class MenuBehaviour {
                 new ArrayList<>(JsonConverter.jsonToObject("student.json", ArrayList.class));
         //converts LinkedHashMap to Student object
         for (LinkedHashMap studentMap : studentMaps) {
-            students.add(new Student((String) studentMap.get("name"),
+            Student student = new Student((String) studentMap.get("name"),
                     (Integer) studentMap.get("age"),
                     (Integer) studentMap.get("studentNr"),
                     //decode byte array from json file
                     Base64.decodeBase64((String) studentMap.get("passwordHashed")),
-                    false));
+                    false);
+            student.setExamsPassed((ArrayList<Exam>) studentMap.get("examsPassed"));
+            students.add(student);
         }
 
         ArrayList<LinkedHashMap> docentmaps =
@@ -298,7 +300,6 @@ public final class MenuBehaviour {
             scanner.nextLine();
 
             switch (choice) {
-
                 case 1 -> {
                     Question mcquestion = new MCQuestion(title, weight);
                     questions.add(mcquestion);
@@ -317,7 +318,6 @@ public final class MenuBehaviour {
                 }
                 default ->{
                 }
-
             }
 
             System.out.println("""
@@ -330,7 +330,6 @@ public final class MenuBehaviour {
 
             choice = scanner.nextInt();
             scanner.nextLine();
-
         }
 
         Question[] questionArray = new Question[questions.size()];
@@ -350,9 +349,7 @@ public final class MenuBehaviour {
             Exam exam = new Exam(examTitle, questionArray, pointsToPass);
             exams.add(exam);
         }
-
         System.out.println("Het examen: " + examTitle + " is aangemaakt. Hij kan nu worden gemaakt");
-
     }
 
     //Getters

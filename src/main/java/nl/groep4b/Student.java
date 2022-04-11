@@ -91,4 +91,9 @@ public class Student {
     public ArrayList<Exam> getExamsPassed() {
         return examsPassed;
     }
+
+    public void setExamsPassed(ArrayList<Exam> examsPassed)
+    {
+        this.examsPassed = examsPassed;
+    }
 }

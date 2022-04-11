@@ -112,7 +112,6 @@ public class Main {
                 passwordCorrect = true;
                 break;
             }
-
         }
         if(!passwordCorrect){
             System.out.println("Gebruikersnaam of wachtwoord is verkeerd");
