@@ -82,7 +82,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        //put a speciefied type of users in the arraylist users
+        //put a specified type of user in the arraylist users
         ArrayList<User> users = new ArrayList<>();
         switch (input)
         {

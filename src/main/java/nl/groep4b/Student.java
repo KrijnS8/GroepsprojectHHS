@@ -70,6 +70,12 @@ public class Student {
         return bean;
     }
 
+    public void passedExam(Exam exam) {
+        if (!examsPassed.contains(exam)){
+            examsPassed.add(exam);
+        }
+    }
+
     //Getters:
     public String getName() {
         return name;
