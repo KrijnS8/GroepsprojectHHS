@@ -34,6 +34,7 @@ public class ExamTest {
 
     @Test
     public void testExam() {
+        Main.loggedInStudent = new Student("name1", 88, -1, "wachtwoord".getBytes(), false);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         ByteArrayInputStream in = new ByteArrayInputStream("true\n".getBytes());
         System.setIn(in);
