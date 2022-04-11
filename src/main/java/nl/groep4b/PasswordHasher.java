@@ -10,7 +10,7 @@ public class PasswordHasher {
     public static byte[] hashToByteArray(String password) {
         try {
             // Hash password
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(password.getBytes());
 
             // Return hashed password
@@ -25,7 +25,7 @@ public class PasswordHasher {
     public static String hashToString(String password) {
         try {
             // Hash password
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(password.getBytes());
             byte[] resultByteArray = messageDigest.digest();
 
