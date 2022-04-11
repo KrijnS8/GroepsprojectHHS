@@ -1,7 +1,6 @@
 package nl.groep4b;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.groep4b.beans.StudentBean;
 
 import java.io.File;
 import java.io.IOException;
