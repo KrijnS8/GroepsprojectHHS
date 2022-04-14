@@ -3,25 +3,25 @@ package nl.groep4b;
 public class User
 {
     //Variables:
-    private String name;
-    private byte[] passwordHashed;
+    private final String NAME;
+    private final byte[] PASSWORDHASHED;
 
     //Constructors:
-    public User(String name, byte[] passwordHashed)
+    public User(String NAME, byte[] PASSWORDHASHED)
     {
-        this.name = name;
-        this.passwordHashed = passwordHashed;
+        this.NAME = NAME;
+        this.PASSWORDHASHED = PASSWORDHASHED;
     }
 
     //Getters:
     public String getName()
     {
-        return name;
+        return NAME;
     }
 
     //Setters:
     public byte[] getPasswordHashed()
     {
-        return passwordHashed;
+        return PASSWORDHASHED;
     }
 }
