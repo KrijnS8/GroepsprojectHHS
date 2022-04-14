@@ -1,5 +1,9 @@
 package nl.groep4b;
 
+import nl.groep4b.Exams.MCQuestion;
+import nl.groep4b.Exams.OpenQuestion;
+import nl.groep4b.Exams.Question;
+import nl.groep4b.Exams.YNQuestion;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

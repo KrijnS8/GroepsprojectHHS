@@ -1,4 +1,8 @@
-package nl.groep4b;
+package nl.groep4b.Exams;
+
+import nl.groep4b.Beans.ExamBean;
+import nl.groep4b.Beans.QuestionBean;
+import nl.groep4b.Main;
 
 import java.util.ArrayList;
 
@@ -7,14 +11,14 @@ public class Exam {
      * This class is used to create and take Exams
      */
     //Variables:
-    private String examTitle;
+    private final String EXAMTITLE;
     private int pointsToPass;
     private int maxPoints = 0;
     Question[] questions;
 
     //Constructors:
-    public Exam(String examTitle, Question[] questions){
-        this.examTitle = examTitle;
+    public Exam(String EXAMTITLE, Question[] questions){
+        this.EXAMTITLE = EXAMTITLE;
         this.questions = questions;
         for (Question question : questions) {
             maxPoints += question.getWeight();
@@ -28,7 +32,7 @@ public class Exam {
     }
 
     public Exam(ExamBean bean) {
-        this.examTitle = bean.getExamTitle();
+        this.EXAMTITLE = bean.getExamTitle();
         this.pointsToPass = bean.getPointsToPass();
         this.maxPoints = bean.getMaxPoints();
 
@@ -70,7 +74,7 @@ public class Exam {
 
     public ExamBean toBean() {
         ExamBean bean = new ExamBean();
-        bean.setExamTitle(examTitle);
+        bean.setExamTitle(EXAMTITLE);
         bean.setPointsToPass(pointsToPass);
         bean.setMaxPoints(maxPoints);
 
@@ -88,6 +92,6 @@ public class Exam {
         return pointsToPass;
     }
     public String getExamTitle(){
-        return examTitle;
+        return EXAMTITLE;
     }
 }

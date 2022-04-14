@@ -1,5 +1,10 @@
-package nl.groep4b;
+package nl.groep4b.Users;
 
+import nl.groep4b.Beans.StudentBean;
+import nl.groep4b.Exams.Exam;
+import nl.groep4b.Main;
+import nl.groep4b.Menu.PasswordHasher;
+import nl.groep4b.Menu.Wrapper;
 import org.apache.commons.codec.binary.Base64;
 
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package nl.groep4b;
 
+import nl.groep4b.Exams.*;
+import nl.groep4b.Users.Student;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

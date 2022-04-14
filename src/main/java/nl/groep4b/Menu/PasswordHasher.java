@@ -1,4 +1,4 @@
-package nl.groep4b;
+package nl.groep4b.Menu;
 
 import org.apache.commons.codec.binary.Base64;
 import java.security.MessageDigest;

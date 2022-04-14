@@ -1,5 +1,6 @@
 package nl.groep4b;
 
+import nl.groep4b.Users.Student;
 import org.junit.Test;
 
 import java.util.ArrayList;

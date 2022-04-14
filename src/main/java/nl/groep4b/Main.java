@@ -1,9 +1,16 @@
 package nl.groep4b;
 
+import nl.groep4b.Beans.BeheerderBean;
+import nl.groep4b.Beans.DocentBean;
+import nl.groep4b.Beans.StudentBean;
+import nl.groep4b.Menu.*;
+import nl.groep4b.Users.Student;
+import nl.groep4b.Users.User;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static nl.groep4b.MenuBehaviour.*;
+import static nl.groep4b.Menu.MenuBehaviour.*;
 
 public class Main {
 
@@ -11,11 +18,11 @@ public class Main {
     static ScannerV2 scanner = new ScannerV2();
     static ArrayList<MenuItem> mainMenuItems = new ArrayList<>();
     static ArrayList<MenuItem> roleMenuItems = new ArrayList<>();
-    static Student loggedInStudent;
+    public static Student loggedInStudent;
     static int choice;
     private static int role;
 
-    static final String LIST = "list";
+    public static final String LIST = "list";
     static final String OPTIONS = "options";
     static final String BACK = "back";
     static final String EXIT = "exit";

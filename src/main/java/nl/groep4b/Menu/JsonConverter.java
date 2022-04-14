@@ -1,4 +1,4 @@
-package nl.groep4b;
+package nl.groep4b.Menu;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;

@@ -1,8 +1,7 @@
-package nl.groep4b;
+package nl.groep4b.Beans;
 
 
-
-public class BeheerderBean
+public class DocentBean
 {
     //Variables:
     private String name;

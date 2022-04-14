@@ -1,4 +1,4 @@
-package nl.groep4b;
+package nl.groep4b.Menu;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

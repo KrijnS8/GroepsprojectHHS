@@ -1,4 +1,10 @@
-package nl.groep4b;
+package nl.groep4b.Menu;
+
+import nl.groep4b.Beans.BeheerderBean;
+import nl.groep4b.Beans.DocentBean;
+import nl.groep4b.Beans.StudentBean;
+import nl.groep4b.Exams.*;
+import nl.groep4b.Users.Student;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

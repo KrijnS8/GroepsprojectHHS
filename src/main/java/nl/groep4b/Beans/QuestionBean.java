@@ -1,4 +1,4 @@
-package nl.groep4b;
+package nl.groep4b.Beans;
 
 public class QuestionBean {
 

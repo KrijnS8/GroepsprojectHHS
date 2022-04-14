@@ -1,4 +1,6 @@
-package nl.groep4b;
+package nl.groep4b.Beans;
+
+import nl.groep4b.Exams.Exam;
 
 import java.util.ArrayList;
 
