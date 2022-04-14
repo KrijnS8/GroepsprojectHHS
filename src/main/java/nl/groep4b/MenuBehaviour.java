@@ -39,34 +39,11 @@ public final class MenuBehaviour {
         ArrayList<BeheerderBean> beheerder = JsonConverter.jsonToObjectArrayList("beheerder.json", BeheerderBean.class);
         beheerderBeans.addAll(beheerder);
 
+        //exams.json
         ArrayList<ExamBean> examBeans = JsonConverter.jsonToObjectArrayList("exams.json", ExamBean.class);
         for(ExamBean examBean: examBeans){
             exams.add(new Exam(examBean));
         }
-        /*
-        //Initialize exams with 2 exams: English 101 en Calculus 101
-        Question ynTest = new YNQuestion("Is this test hard?",
-                5,
-                false);
-
-        Question mcTest = new MCQuestion("Wie is onze docent",
-                5,
-                new String[]{"Anniek Wieman", "Anneke Wieman"},
-                2);
-
-        Question openTest = new OpenQuestion("Wat is de afkorting van Haagse HogeSchool",
-                5,
-                "HHS");
-
-        Question[] testQuestions = {ynTest, mcTest, openTest};
-        Question[] emptyQuestionList = {};
-        Exam exampleEnglish1 = new Exam("English 101", testQuestions);
-        Exam exampleCalculus1 = new Exam("Calculus 101", emptyQuestionList, 150);
-
-        exams.add(exampleEnglish1);
-        exams.add(exampleCalculus1);
-*/
-
     }
 
     //Print out "Studenten:" followed by the list of students(numbers before the students follow list convention as you
@@ -337,7 +314,7 @@ public final class MenuBehaviour {
         exams.add(exam);
 
         System.out.println("Het examen: " + examTitle + " is aangemaakt. Hij kan nu worden gemaakt");
-
+        saveData();
     }
 
     //Getters
