@@ -86,11 +86,11 @@ public class Main {
 
         if(!passwordCorrect){
             System.out.println("Gebruikersnaam of password is verkeerd");
-            System.out.println("Klik op enter om nog een keer te proberen");
-            System.out.println("Vul 0 in om uit het programma te gaan");
+            System.out.println("0) sluit het programma");
+            System.out.println("1) opnieuw proberen");
 
             //if user pressed enter key then it re-runs the function
-            if (scanner.nextLine().equals(""))
+            if (scanner.nextLine().equals("1"))
                 login(input, users, scanner);
             else
                 return false;

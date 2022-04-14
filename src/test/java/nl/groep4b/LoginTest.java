@@ -19,6 +19,7 @@ public class LoginTest
     @Test
     public void loginTest(){
         //assert everyting is correct
+
         String[] answers1 = new String[] {"user2","wachtwoord2"};
         assertTrue(Main.login(1, users, new TestScanner(answers1)));
 
@@ -27,7 +28,7 @@ public class LoginTest
         assertFalse(Main.login(1, users, new TestScanner(answers2)));
 
         //assert wrong first time ---> correct seccond time
-        String[] answers3 = new String[] {"user1","wachtwoord2","\n", "user3", "wachtwoord3"};
-        assertTrue(Main.login(1, users, new TestScanner(answers1)));
+        String[] answers3 = new String[] {"user1","wachtwoord2","1", "user1", "wachtwoord1"};
+        assertTrue(Main.login(1, users, new TestScanner(answers3)));
     }
 }
