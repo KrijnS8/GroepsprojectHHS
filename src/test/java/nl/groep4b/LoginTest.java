@@ -1,5 +1,6 @@
 package nl.groep4b;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ public class LoginTest
         String[] answers2 = new String[] {"user1","wachtwoord3", "\n"};
         assertFalse(Main.login(1, users, new TestScanner(answers2)));
 
-        //assert wrong user type
-        String[] answers3 = new String[] {"user1","wachtwoord3", "\n"};
-        assertFalse(Main.login(2, users, new TestScanner(answers3)));
+        //assert wrong first time ---> correct seccond time
+        String[] answers3 = new String[] {"user1","wachtwoord2","\n", "user3", "wachtwoord3"};
+        assertTrue(Main.login(1, users, new TestScanner(answers1)));
     }
 }
