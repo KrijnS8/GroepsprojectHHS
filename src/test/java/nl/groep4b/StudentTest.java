@@ -26,9 +26,9 @@ public class StudentTest {
 
     @Test
     public void createStudentTest(){
-        Student student1 = new Student(name1, age1, studentNr1, wachtwoord.getBytes(), false);
-        Student student2 = new Student(name2, age2, studentNr2, wachtwoord.getBytes(), false);
-        Student student3 = new Student(name3, age3, studentNr3, wachtwoord.getBytes(), false);
+        Student student1 = new Student(name1, age1, studentNr1, wachtwoord.getBytes());
+        Student student2 = new Student(name2, age2, studentNr2, wachtwoord.getBytes());
+        Student student3 = new Student(name3, age3, studentNr3, wachtwoord.getBytes());
 
         testStudents.add(student1);
         testStudents.add(student2);

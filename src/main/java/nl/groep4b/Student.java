@@ -19,7 +19,7 @@ public class Student {
     byte[] passwordHashed;
 
     //Constructors:
-    public Student(String name, int age, int studentNr, byte[] password, boolean needsToBeHashed){
+    public Student(String name, int age, int studentNr, byte[] password){
         this.name = name;
         this.age = age;
         this.studentNr = studentNr;
