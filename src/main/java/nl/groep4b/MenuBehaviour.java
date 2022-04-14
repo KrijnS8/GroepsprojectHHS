@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-import static nl.groep4b.Main.saveUsers;
+import static nl.groep4b.Main.saveData;
 
 public final class MenuBehaviour {
     /**
@@ -16,7 +16,7 @@ public final class MenuBehaviour {
     public static ArrayList<Student> students = new ArrayList<>();
     public static ArrayList<DocentBean> docentBeans = new ArrayList<>();
     public static ArrayList<BeheerderBean> beheerderBeans = new ArrayList<>();
-    static ArrayList<Exam> exams = new ArrayList<>();
+    public static ArrayList<Exam> exams = new ArrayList<>();
 
     static final String LIST = "list";
     static final String OPTIONS = "options";
@@ -39,7 +39,11 @@ public final class MenuBehaviour {
         ArrayList<BeheerderBean> beheerder = JsonConverter.jsonToObjectArrayList("beheerder.json", BeheerderBean.class);
         beheerderBeans.addAll(beheerder);
 
-
+        ArrayList<ExamBean> examBeans = JsonConverter.jsonToObjectArrayList("exams.json", ExamBean.class);
+        for(ExamBean examBean: examBeans){
+            exams.add(new Exam(examBean));
+        }
+        /*
         //Initialize exams with 2 exams: English 101 en Calculus 101
         Question ynTest = new YNQuestion("Is this test hard?",
                 5,
@@ -61,6 +65,8 @@ public final class MenuBehaviour {
 
         exams.add(exampleEnglish1);
         exams.add(exampleCalculus1);
+*/
+
     }
 
     //Print out "Studenten:" followed by the list of students(numbers before the students follow list convention as you
@@ -160,7 +166,7 @@ public final class MenuBehaviour {
                 }
                 beheerderBeans.add(beheerderBean);
             default:
-                saveUsers();
+                saveData();
             break;
         }
     }
@@ -178,7 +184,7 @@ public final class MenuBehaviour {
         System.out.println("Toets het nummer van de leerling die u wilt verwijderen.");
         int index = scanner.nextInt();
         students.remove(index - 1);
-        saveUsers();
+        saveData();
     }
 
     public static void makeExam() {

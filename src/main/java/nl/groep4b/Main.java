@@ -39,7 +39,7 @@ public class Main {
     //Methods:
     public static void main(String[] args) {
         initialize();
-        saveUsers();
+        saveData();
     }
 
     public static void chooseRole() {
@@ -179,7 +179,7 @@ public class Main {
         }
     }
 
-    public static void saveUsers(){
+    public static void saveData(){
         ArrayList<StudentBean> studentBeans = new ArrayList<>();
 
         for(Student student: students){
@@ -189,6 +189,13 @@ public class Main {
         JsonConverter.objectToJson(studentBeans, "student.json");
         JsonConverter.objectToJson(docentBeans, "docent.json");
         JsonConverter.objectToJson(beheerderBeans, "beheerder.json");
+
+        ArrayList<ExamBean> exambeans = new ArrayList<>();
+        for(Exam exam: exams){
+            exambeans.add(exam.toBean());
+        }
+
+        JsonConverter.objectToJson(exambeans, "exams.json");
     }
 
     //Create a new menuItem(in red) which asks if you want to go back to the main menu by typing 0 (zero)

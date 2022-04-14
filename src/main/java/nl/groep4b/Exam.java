@@ -7,7 +7,7 @@ public class Exam {
      * This class is used to create and take Exams
      */
     //Variables:
-    private String examTitle;
+    private final String examTitle;
     private int pointsToPass;
     private int maxPoints = 0;
     Question[] questions;
@@ -48,11 +48,6 @@ public class Exam {
     //Methods:
     public void doExam(){
         int points = 0;
-        /*List<Question> questionList = Arrays.asList(questions);
-
-        Collections.shuffle(questionList);
-
-        questionList.toArray(questions);*/
         for (Question question : questions) {
             boolean correct = question.askQuestion();
             if (correct) {
