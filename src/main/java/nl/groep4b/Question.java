@@ -96,7 +96,7 @@ class MCQuestion extends Question {
         QuestionBean bean = new QuestionBean();
         bean.setText(this.getText());
         bean.setWeight(this.getWeight());
-        bean.setQuestionType(QuestionBean.MC_QUESTION_TYPE);
+        bean.setQuestionType(questionSort.MC);
         bean.setMCQuestionOptions(options);
         bean.setMCQuestionsCorrectAnswer(correctAnswer);
         return bean;
@@ -145,7 +145,7 @@ class OpenQuestion extends Question {
         QuestionBean bean = new QuestionBean();
         bean.setText(this.getText());
         bean.setWeight(this.getWeight());
-        bean.setQuestionType(QuestionBean.OPEN_QUESTION_TYPE);
+        bean.setQuestionType(questionSort.OPEN);
         bean.setOpenQuestionCorrectAnswer(correctAnswer);
         return bean;
     }
@@ -194,7 +194,7 @@ class YNQuestion extends Question {
         QuestionBean bean = new QuestionBean();
         bean.setText(this.getText());
         bean.setWeight(this.getWeight());
-        bean.setQuestionType(QuestionBean.YN_QUESTION_TYPE);
+        bean.setQuestionType(questionSort.YESNO);
         bean.setYNQuestionCorrectAnswer(correctAnswer);
         return bean;
     }

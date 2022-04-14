@@ -272,7 +272,6 @@ public final class MenuBehaviour {
                 """);
 
         int choice = scanner.nextInt();
-        scanner.nextLine();
         ArrayList<Question> questions = new ArrayList<>();
 
         while (choice != 0) {
@@ -280,7 +279,6 @@ public final class MenuBehaviour {
             String title = scanner.nextLine();
             System.out.println("Hoeveel punten is de vraag waard?");
             int weight = scanner.nextInt();
-            scanner.nextLine();
 
             switch (choice) {
 

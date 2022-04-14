@@ -35,9 +35,9 @@ public class Exam {
         ArrayList<Question> returnedQuestions = new ArrayList<>();
         for (QuestionBean questionBean : bean.getQuestions()) {
             switch (questionBean.getQuestionType()) {
-                case QuestionBean.MC_QUESTION_TYPE -> returnedQuestions.add(new MCQuestion(questionBean));
-                case QuestionBean.OPEN_QUESTION_TYPE -> returnedQuestions.add(new OpenQuestion(questionBean));
-                case QuestionBean.YN_QUESTION_TYPE -> returnedQuestions.add(new YNQuestion(questionBean));
+                case MC -> returnedQuestions.add(new MCQuestion(questionBean));
+                case OPEN -> returnedQuestions.add(new OpenQuestion(questionBean));
+                case YESNO -> returnedQuestions.add(new YNQuestion(questionBean));
                 default -> throw new RuntimeException();
             }
         }

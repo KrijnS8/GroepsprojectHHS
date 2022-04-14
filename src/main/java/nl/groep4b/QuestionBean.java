@@ -4,7 +4,7 @@ public class QuestionBean {
 
     private String text;
     private int weight;
-    private int questionType;
+    private questionSort questionType;
 
     // Question types
     public static final int MC_QUESTION_TYPE = 0;
@@ -41,11 +41,11 @@ public class QuestionBean {
         this.weight = weight;
     }
 
-    public int getQuestionType() {
+    public questionSort getQuestionType() {
         return questionType;
     }
 
-    public void setQuestionType(int questionType) {
+    public void setQuestionType(questionSort questionType) {
         this.questionType = questionType;
     }
 
@@ -81,3 +81,9 @@ public class QuestionBean {
         this.YNQuestionCorrectAnswer = YNQuestionCorrectAnswer;
     }
 }
+
+enum questionSort{
+    OPEN,
+    YESNO,
+    MC
+        }
