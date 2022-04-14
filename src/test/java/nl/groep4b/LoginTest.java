@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-public class LoginText
+public class LoginTest
 {
     ArrayList<User> users = new ArrayList<>(Arrays.asList(
             new User("user1", PasswordHasher.hashToByteArray("wachtwoord1")),
