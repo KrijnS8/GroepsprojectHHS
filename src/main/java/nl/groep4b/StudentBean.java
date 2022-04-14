@@ -1,6 +1,8 @@
 package nl.groep4b;
 
+import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StudentBean {
 
@@ -8,7 +10,7 @@ public class StudentBean {
     private String name;
     private int age;
     private int studentNr;
-    private ArrayList<Exam> examsPassed = new ArrayList<>();
+    private ArrayList<ExamBean> examsPassed = new ArrayList<>();
     private String passwordHashed;
 
     //Constructors:
@@ -26,8 +28,9 @@ public class StudentBean {
     public int getStudentNr() {
         return studentNr;
     }
-    public ArrayList<Exam> getExamsPassed() {
-        return examsPassed;
+    public ArrayList<ExamBean> getExamsPassed() {
+        //return examsPassed;
+        return this.examsPassed;
     }
     public String getPasswordHashed()
     {
@@ -44,8 +47,8 @@ public class StudentBean {
     public void setStudentNr(int studentNr) {
         this.studentNr = studentNr;
     }
-    public void setExamsPassed(ArrayList<Exam> examsPassed) {
-        this.examsPassed = examsPassed;
+    public void setExamsPassed(ArrayList<ExamBean> examsPassed) {
+this.examsPassed = examsPassed;
     }
     public void setPasswordHashed(String passwordHashed)
     {

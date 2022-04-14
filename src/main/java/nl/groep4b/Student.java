@@ -3,6 +3,7 @@ package nl.groep4b;
 import org.apache.commons.codec.binary.Base64;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Student {
     /**
@@ -28,6 +29,9 @@ public class Student {
         this.name = bean.getName();
         this.age = bean.getAge();
         this.studentNr = bean.getStudentNr();
+        for(ExamBean examBean: bean.getExamsPassed()){
+            this.examsPassed.add(new Exam(examBean));
+        }
         this.passwordHashed = Base64.decodeBase64(bean.getPasswordHashed());
     }
 
@@ -49,7 +53,11 @@ public class Student {
         bean.setName(name);
         bean.setAge(age);
         bean.setStudentNr(studentNr);
-        bean.setExamsPassed(examsPassed);
+        ArrayList<ExamBean> examBeans = new ArrayList<>();
+        for(Exam exam: examsPassed){
+            examBeans.add(exam.toBean());
+        }
+        bean.setExamsPassed(examBeans);
         bean.setPasswordHashed(PasswordHasher.byteArrayToString(passwordHashed));
         return bean;
     }
