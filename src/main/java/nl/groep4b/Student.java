@@ -3,7 +3,6 @@ package nl.groep4b;
 import org.apache.commons.codec.binary.Base64;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Student {
     /**
@@ -87,10 +86,5 @@ public class Student {
     }
     public ArrayList<Exam> getExamsPassed() {
         return examsPassed;
-    }
-
-    public void setExamsPassed(ArrayList<Exam> examsPassed)
-    {
-        this.examsPassed = examsPassed;
     }
 }

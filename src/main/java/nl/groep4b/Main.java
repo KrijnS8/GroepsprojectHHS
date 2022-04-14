@@ -2,7 +2,6 @@ package nl.groep4b;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 import static nl.groep4b.MenuBehaviour.*;
 

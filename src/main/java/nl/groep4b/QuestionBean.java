@@ -6,11 +6,6 @@ public class QuestionBean {
     private int weight;
     private questionSort questionType;
 
-    // Question types
-    public static final int MC_QUESTION_TYPE = 0;
-    public static final int OPEN_QUESTION_TYPE = 1;
-    public static final int YN_QUESTION_TYPE = 2;
-
     // MCQuestionBean variables
     private String[] MCQuestionOptions;
     private int MCQuestionsCorrectAnswer;

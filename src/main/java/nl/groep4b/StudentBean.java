@@ -1,8 +1,6 @@
 package nl.groep4b;
 
-import java.sql.Blob;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class StudentBean {
 

@@ -17,11 +17,6 @@ public abstract class Question {
         this.weight = weight;
     }
 
-    public Question(QuestionBean bean) {
-        this.text = bean.getText();
-        this.weight = bean.getWeight();
-    }
-
     //Getters:
     public int getWeight() {
         return weight;
