@@ -15,9 +15,8 @@ public class QuestionTest {
 
         @Test
         public void QuestionTest1(){
-            ByteArrayInputStream in = new ByteArrayInputStream("false\n".getBytes());
-            System.setIn(in);
-            boolean YourAns = Question1.askQuestion();
+            String[] answer = new String[] {"false"};
+            boolean YourAns = Question1.askQuestion(new TestScanner(answer));
             String Question1text = "Is this test hard?";
             int Question1Weight = 5;
 
@@ -28,9 +27,8 @@ public class QuestionTest {
         }
         @Test
         public void QuestionTest2(){
-            ByteArrayInputStream in = new ByteArrayInputStream("2\n".getBytes());
-            System.setIn(in);
-            boolean YourAns = Question2.askQuestion();
+            String[] answer = new String[] {"2"};
+            boolean YourAns = Question2.askQuestion(new TestScanner(answer));
 
             String Question2text = "Wie is onze docent";
             int Question2Weight = 5;
@@ -42,9 +40,8 @@ public class QuestionTest {
         }
         @Test
         public void Questiontest3(){
-            ByteArrayInputStream in = new ByteArrayInputStream("HHS".getBytes());
-            System.setIn(in);
-            boolean YourAns = Question3.askQuestion();
+            String[] answer = new String[] {"HHS"};
+            boolean YourAns = Question3.askQuestion(new TestScanner(answer));
             String Question3text = "Wat is de afkorting van Haagse HogeSchool";
             int Question3Weight = 5;
 

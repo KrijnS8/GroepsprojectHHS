@@ -19,16 +19,14 @@ public class ExamTest {
     public void testQuestions() {
         assertEquals(testYNquestion.getText(), "Is dit een ja/nee vraag?");
 
-        ByteArrayInputStream in = new ByteArrayInputStream("Den Haag".getBytes());
-        System.setIn(in);
-        assertTrue(testOpenQuestion.askQuestion());
-        in = new ByteArrayInputStream("Delft".getBytes());
-        System.setIn(in);
-        assertFalse(testOpenQuestion.askQuestion());
+        String[] answers1 = new String[] {"Den Haag"};
+        assertTrue(testOpenQuestion.askQuestion(new TestScanner(answers1)));
 
-        in = new ByteArrayInputStream("2\n".getBytes());
-        System.setIn(in);
-        assertTrue(testMCquestion.askQuestion());
+        String[] answers2 = new String[] {"true"};
+        assertTrue(testYNquestion.askQuestion(new TestScanner(answers2)));
+
+        String[] answers3 = new String[] {"2"};
+        assertTrue(testMCquestion.askQuestion(new TestScanner(answers3)));
 
     }
 
@@ -36,11 +34,10 @@ public class ExamTest {
     public void testExam() {
         Main.loggedInStudent = new Student("name1", 88, -1, "wachtwoord".getBytes());
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        ByteArrayInputStream in = new ByteArrayInputStream("true\n".getBytes());
-        System.setIn(in);
         System.setOut(new PrintStream(outContent));
-        oneQexam.doExam();
-        assertTrue(outContent.toString().contains("Congratulations, you passed the exam with a score of 5 out of 5."));
+        String[] answers = new String[] {"2", "Den Haag", "true"};
+        exam.doExam(new TestScanner(answers));
+        assertTrue(outContent.toString().contains("Congratulations, you passed the exam with a score of 15 out of 15."));
 
         assertEquals("testExam", exam.getExamTitle());
         assertEquals(15/2, exam.getPointsToPass());

@@ -191,7 +191,7 @@ public final class MenuBehaviour {
         System.out.println("Welk examen wilt u maken?");
         showExamList(LIST);
         int examIndex = scanner.nextInt();
-        exams.get(examIndex - 1).doExam();
+        exams.get(examIndex - 1).doExam(scanner);
     }
 
     //Show the list of students and

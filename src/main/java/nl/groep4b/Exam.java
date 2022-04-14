@@ -46,10 +46,10 @@ public class Exam {
     }
 
     //Methods:
-    public void doExam(){
+    public void doExam(ScannerV2 scan){
         int points = 0;
         for (Question question : questions) {
-            boolean correct = question.askQuestion();
+            boolean correct = question.askQuestion(scan);
             if (correct) {
                 points += question.getWeight();
             }

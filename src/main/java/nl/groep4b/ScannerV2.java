@@ -3,7 +3,7 @@ package nl.groep4b;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ScannerV2 {
+public class ScannerV2{
     /**
      * This class implements a replacement for the normal Scanner class with errors taken care of
      */

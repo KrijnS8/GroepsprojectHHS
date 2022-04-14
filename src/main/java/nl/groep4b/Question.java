@@ -7,7 +7,7 @@ public abstract class Question {
 
     //Variables:
     private final String text;
-    public abstract boolean askQuestion();
+    public abstract boolean askQuestion(ScannerV2 scan);
     public abstract QuestionBean getBean();
     private final int weight;
 
@@ -72,13 +72,12 @@ class MCQuestion extends Question {
 
     //Methods:
     @Override
-    public boolean askQuestion() {
+    public boolean askQuestion(ScannerV2 scanner) {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
         for (int i = 0; i < options.length; i++) {
             System.out.println(i+1 + ": " + options[i]);
         }
-        ScannerV2 scanner = new ScannerV2();
         int givenAnswer = scanner.nextInt();
         System.out.println();
         // Gives you the correct answer if you gave the wrong answer
@@ -125,10 +124,9 @@ class OpenQuestion extends Question {
 
     //Methods:
     @Override
-    public boolean askQuestion() {
+    public boolean askQuestion(ScannerV2 scanner) {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
-        ScannerV2 scanner = new ScannerV2();
         String givenAnswer = scanner.nextLine();
         System.out.println();
         // Gives you the correct answer if you gave the wrong answer
@@ -174,11 +172,10 @@ class YNQuestion extends Question {
 
     //Methods:
     @Override
-    public boolean askQuestion() {
+    public boolean askQuestion(ScannerV2 scanner) {
         //Asks the question and waits for an answer, returns whether the answer given was correct.
         System.out.println(super.getText());
         System.out.println("true of false");
-        ScannerV2 scanner = new ScannerV2();
         boolean givenAnswer = scanner.nextBoolean();
         System.out.println();
         // Gives you the correct answer if you gave the wrong answer
