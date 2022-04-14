@@ -105,6 +105,7 @@ public final class MenuBehaviour {
                     System.out.println("Error: Probeer het opnieuw");
                     newUser();
                 }
+                break;
             case 2:
                 //creates new docent
                 System.out.print("Naam: ");
@@ -143,9 +144,8 @@ public final class MenuBehaviour {
                 }
                 beheerderBeans.add(beheerderBean);
             default:
-                saveData();
-            break;
         }
+        saveData();
     }
 
     //returns hashed password
