@@ -2,6 +2,8 @@ package nl.groep4b;
 
 import java.util.ArrayList;
 
+import static nl.groep4b.Main.saveData;
+
 public class Exam {
     /**
      * This class is used to create and take Exams
@@ -61,6 +63,7 @@ public class Exam {
         else {
             System.out.println("Sorry, you failed the test. You got " + points + " points but you need at least " + pointsToPass + "points.");
         }
+        saveData();
     }
 
     public ExamBean toBean() {
