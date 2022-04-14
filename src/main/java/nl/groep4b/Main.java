@@ -1,8 +1,6 @@
 package nl.groep4b;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.security.MessageDigest;
 import java.util.Arrays;
 
 import static nl.groep4b.MenuBehaviour.*;

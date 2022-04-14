@@ -1,6 +1,5 @@
 package nl.groep4b;
 
-import org.apache.commons.codec.binary.Base64;
 
 public class DocentBean
 {
