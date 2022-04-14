@@ -2,6 +2,7 @@ package nl.groep4b;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static nl.groep4b.MenuBehaviour.*;
 
@@ -13,7 +14,7 @@ public class Main {
     static ArrayList<MenuItem> roleMenuItems = new ArrayList<>();
     static Student loggedInStudent;
     static int choice;
-    private static int role;
+    private static int role = 4;
 
     static final String LIST = "list";
     static final String OPTIONS = "options";
@@ -56,12 +57,15 @@ public class Main {
             chooseRole();
         }
         else {
-            if(input != 4)login(input);
-            role = input;
+            //if login is correct and the user input is not 4   ---> then the correct menu wil activate ---> else the program automatically closes
+            if(input != 4 & login(input, getUsers(input), new ScannerV2())){
+                role = input;
+            }
         }
     }
 
-    public static void login(int input) {
+
+    public static boolean login(int input, ArrayList<User> users, ScannerV2 scanner) {
         System.out.println("Vul uw username in: ");
         String username = scanner.nextLine();
 
@@ -69,25 +73,6 @@ public class Main {
         String password = scanner.nextLine();
         byte[] passwordHashed = PasswordHasher.hashToByteArray(password);
 
-        //put a specified type of user in the arraylist users
-        ArrayList<User> users = new ArrayList<>();
-        switch (input)
-        {
-            case 1:
-            for (Student student: students){
-                users.add(new User(student.getName(), student.getPasswordHashed()));
-            }
-            break;
-            case 2:
-                for(DocentBean docentBean: docentBeans){
-                    users.add(new User(docentBean.getName(), docentBean.getPasswordHashed()));
-                }
-                break;
-            case 3:
-                for(BeheerderBean beheerderBean: beheerderBeans){
-                    users.add(new User(beheerderBean.getName(), beheerderBean.getPasswordHashed()));
-                }
-        }
         //checks if Arraylist users contains user with correct name and password
         boolean passwordCorrect = false;
         for(User user: users){
@@ -103,11 +88,36 @@ public class Main {
             System.out.println("Gebruikersnaam of password is verkeerd");
             System.out.println("Klik op enter om nog een keer te proberen");
             System.out.println("Vul 0 in om uit het programma te gaan");
+
+            //if user pressed enter key then it re-runs the function
             if (scanner.nextLine().equals(""))
-                login(input);
+                login(input, users, scanner);
             else
-                System.exit(0);
+                return false;
         }
+        return true;
+    }
+
+    public static ArrayList<User> getUsers(int input){
+        ArrayList<User> users = new ArrayList<>();
+        switch (input)
+        {
+            case 1:
+                for (Student student: students){
+                    users.add(new User(student.getName(), student.getPasswordHashed()));
+                }
+                break;
+            case 2:
+                for(DocentBean docentBean: docentBeans){
+                    users.add(new User(docentBean.getName(), docentBean.getPasswordHashed()));
+                }
+                break;
+            case 3:
+                for(BeheerderBean beheerderBean: beheerderBeans){
+                    users.add(new User(beheerderBean.getName(), beheerderBean.getPasswordHashed()));
+                }
+        }
+        return users;
     }
 
     public static void saveLoggedInStudent(String studentName){
