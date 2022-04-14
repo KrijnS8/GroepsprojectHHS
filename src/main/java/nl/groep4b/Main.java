@@ -63,8 +63,7 @@ public class Main {
         }
     }
 
-    public static void login(int input)
-    {
+    public static void login(int input) {
         System.out.println("Vul uw username in: ");
         String username = scanner.nextLine();
 
