@@ -4,6 +4,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+import static nl.groep4b.Main.saveUsers;
+
 public final class MenuBehaviour {
     /**
      * This class has static methods for the behaviour of several menu options
@@ -113,7 +115,7 @@ public final class MenuBehaviour {
                     System.out.print("Leerling wachtwoord");
                     String password = scanner.nextLine();
 
-                    students.add(new Student(name, age, leerlingNr, PasswordHasher.hashToByteArray(password), true));
+                    students.add(new Student(name, age, leerlingNr, PasswordHasher.hashToByteArray(password)));
                     showStudentList(LIST);
                 } catch (InputMismatchException ime)
                 {
@@ -158,6 +160,7 @@ public final class MenuBehaviour {
                 }
                 beheerderBeans.add(beheerderBean);
             default:
+                saveUsers();
             break;
         }
     }
@@ -175,6 +178,7 @@ public final class MenuBehaviour {
         System.out.println("Toets het nummer van de leerling die u wilt verwijderen.");
         int index = scanner.nextInt();
         students.remove(index - 1);
+        saveUsers();
     }
 
     public static void makeExam() {
