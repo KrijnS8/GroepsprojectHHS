@@ -1,5 +1,8 @@
 package nl.groep4b;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class ExamBean {
 
     private String examTitle;

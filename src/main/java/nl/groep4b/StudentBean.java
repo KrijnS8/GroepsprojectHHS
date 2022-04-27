@@ -1,6 +1,7 @@
 package nl.groep4b;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class StudentBean {
 
@@ -51,5 +52,19 @@ this.examsPassed = examsPassed;
     public void setPasswordHashed(String passwordHashed)
     {
         this.passwordHashed = passwordHashed;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentBean that = (StudentBean) o;
+        return age == that.age && studentNr == that.studentNr && name.equals(that.name) && examsPassed.equals(that.examsPassed) && passwordHashed.equals(that.passwordHashed);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, studentNr, examsPassed, passwordHashed);
     }
 }

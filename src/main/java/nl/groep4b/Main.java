@@ -195,16 +195,16 @@ public class Main {
             studentBeans.add(student.getBean());
         }
 
-        JsonConverter.objectToJson(studentBeans, "student.json");
-        JsonConverter.objectToJson(docentBeans, "docent.json");
-        JsonConverter.objectToJson(beheerderBeans, "beheerder.json");
+        JsonConverter.objectArrayListToJson(studentBeans, "student.json");
+        JsonConverter.objectArrayListToJson(docentBeans, "docent.json");
+        JsonConverter.objectArrayListToJson(beheerderBeans, "beheerder.json");
 
         ArrayList<ExamBean> exambeans = new ArrayList<>();
         for(Exam exam: exams){
             exambeans.add(exam.toBean());
         }
 
-        JsonConverter.objectToJson(exambeans, "exams.json");
+        JsonConverter.objectArrayListToJson(exambeans, "exams.json");
     }
 
     //Create a new menuItem(in red) which asks if you want to go back to the main menu by typing 0 (zero)

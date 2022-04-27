@@ -16,7 +16,7 @@ public class JsonConverter {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     //Methods:
-    public static void objectToJson(Object object, String filePath) {
+    public static void objectArrayListToJson(Object object, String filePath) {
         // Create file at given path
         File file = new File(filePath);
         try {
